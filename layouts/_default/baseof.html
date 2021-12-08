@@ -3,6 +3,16 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>New World Invasion Guide</title>
+
+    {{ $scss := resources.Get "scss/main.scss" | resources.ToCSS }}
+    {{ $styles := $scss | postCSS }}
+
+    {{ if .Site.IsServer }}
+        <link rel="stylesheet" href="{{ $styles.RelPermalink }}"/>
+    {{ else }}
+        {{ $styles := $styles | minify | fingerprint | resources.PostProcess }}
+        <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}"/>
+    {{ end }}
 </head>
 <main>
     {{ partial "header" . }}
