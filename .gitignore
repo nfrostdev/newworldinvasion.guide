@@ -1,7 +1,16 @@
-.DS_Store
-node_modules
+# Build directories
+public
 dist
-tmp
-/public/
-/resources/_gen/
+resources
+
+# Dependency directory
+node_modules
+
+# Mac File System File...utterly useless to anyone but me.
+.DS_Store
+
+# Jetbrains IDEs
 .idea
+
+# Firebase tmp
+.firebase
