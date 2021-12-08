@@ -8,5 +8,10 @@ html {
 }
 
 h1 {
-  @apply text-5xl;
+  @apply text-5xl mb-4;
+}
+
+p {
+  font-family: "Assistant", sans-serif;
+  @apply font-light mb-2;
 }
