@@ -1,3 +1,5 @@
+{{ $page := . }}
+
 {{
 $links := slice
 (dict "location" "strategies" "text" "Strategies")
@@ -12,7 +14,11 @@ $links := slice
     </a>
     <nav class="header__nav">
         {{ range $links }}
-            <a href="/{{ .location }}" class="header__nav__link">{{ .text }}</a>
+            <a href="/{{ .location }}"
+               class="header__nav__link {{ if eq .location (trim $page.RelPermalink "/") }}active{{ end }}">
+                <span>{{ .text }}</span>
+                <span class="header__nav__link__arrow">🢒</span>
+            </a>
         {{ end }}
     </nav>
 </header>

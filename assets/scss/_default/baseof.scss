@@ -6,3 +6,7 @@ html {
   font-family: 'IM Fell DW Pica', serif;
   @apply bg-nw-gray text-white text-nw-lightgray;
 }
+
+h1 {
+  @apply text-4xl;
+}

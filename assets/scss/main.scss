@@ -4,3 +4,7 @@
 
 @import "_default/baseof";
 @import "partials/header";
+
+.main {
+  @apply ml-52 p-8;
+}
