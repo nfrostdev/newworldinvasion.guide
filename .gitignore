@@ -1,7 +1,8 @@
-# Build directories
+# Build files
 public
 dist
 resources
+.hugo_build.lock
 
 # Dependency directory
 node_modules
