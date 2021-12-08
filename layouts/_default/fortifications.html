@@ -1,4 +1,45 @@
 {{ define "main" }}
     {{ .Content }}
-    SASDF
+    {{ $fortifications := slice
+    (dict "name" "Ballista"
+    "description" "The Ballista is the defender’s version of the Cannon and serves the same role as an anti-structure Siege Weapon. It has a medium rate of fire, very high damage per shot, and is most effective against structures and large, slower-moving targets."
+    "damageType" "Siege (Physical)"
+    "crit" "1.3"
+    "headshot" "1.3"
+    "references" (slice
+    (dict "location" "https://www.newworld.com/en-us/news/articles/fight-the-world-war" "text" "New World Official Site")
+    (dict "location" "https://newworld.fandom.com/wiki/Ballista" "text" "New World Wiki")
+    )
+    )
+    }}
+    {{ $crit := resources.Get "img/crit.svg" | minify | fingerprint }}
+    {{ $headshot := resources.Get "img/headshot.svg" | minify | fingerprint }}
+    {{ range $fortifications }}
+        <div class="fortification">
+            <h2 class="fortification__name">{{ .name }}</h2>
+            <p>{{ .description }}</p>
+            <div>Damage Type: {{ .damageType }}</div>
+            <div class="fortification__stat">
+                <span class="fortification__icon fortification__icon--crit" title="Critical Multiplier"
+                      aria-hidden="true">
+                    {{ $crit.Content | safeHTML }}
+                </span>
+                <span>{{ .crit }}x</span>
+            </div>
+            <div class="fortification__stat">
+                <span class="fortification__icon fortification__icon--headshot" title="Headshot Multiplier"
+                      aria-hidden="true">
+                    {{ $headshot.Content | safeHTML }}
+                </span>
+                <span>{{ .headshot }}x</span>
+            </div>
+            {{ if gt (len .references) 0}}
+                <div>
+                    {{ range .references }}
+                        <a href="{{ .location}}">{{ .text }}</a>
+                    {{ end }}
+                </div>
+            {{ end }}
+        </div>
+    {{ end }}
 {{ end }}

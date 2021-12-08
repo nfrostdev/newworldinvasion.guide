@@ -1,0 +1,24 @@
+.fortification {
+  @apply bg-nw-darkgray p-4 rounded-md;
+
+  &__name {
+    @apply text-3xl;
+  }
+
+  &__stat {
+    @apply flex justify-start items-center font-medium;
+  }
+
+  &__icon {
+    @apply inline-block text-nw-orange mr-1 w-4;
+
+    &--crit {
+      // TODO: SCALE ME DOWN, text doesnt work
+      @apply text-sm;
+    }
+
+    &--headshot {
+      @apply transform rotate-12;
+    }
+  }
+}

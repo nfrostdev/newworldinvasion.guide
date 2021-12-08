@@ -3,8 +3,12 @@ html, body {
 }
 
 html {
-  font-family: 'IM Fell DW Pica', serif;
+  font-family: "Assistant", sans-serif;
   @apply bg-nw-gray text-white text-nw-lightgray;
+}
+
+h1, h2 {
+  font-family: 'IM Fell DW Pica', serif;
 }
 
 h1 {
@@ -12,6 +16,5 @@ h1 {
 }
 
 p {
-  font-family: "Assistant", sans-serif;
   @apply font-light mb-2;
 }

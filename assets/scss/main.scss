@@ -4,7 +4,16 @@
 
 @import "_default/baseof";
 @import "partials/header";
+@import "partials/fortifications";
 
 .main {
   @apply ml-52 p-8;
+
+  a {
+    @apply text-nw-gold underline;
+
+    &:hover, &:focus {
+      @apply text-nw-orange;
+    }
+  }
 }

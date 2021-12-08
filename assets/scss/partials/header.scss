@@ -1,4 +1,5 @@
 .header {
+  font-family: 'IM Fell DW Pica', serif;
   @apply fixed top-0 left-0 bottom-0 flex flex-col bg-nw-darkgray text-right min-h-full w-52;
 
   &__title {
