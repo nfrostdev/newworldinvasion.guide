@@ -1,3 +1,18 @@
-<header>
-    This is the header.
+{{
+$links := slice
+(dict "location" "strategies" "text" "Strategies")
+(dict "location" "checklist" "text" "Checklist")
+(dict "location" "enemies" "text" "Enemies")
+}}
+
+<header class="header">
+    <a href="/" class="header__title">
+        <div class="header__title__game">New World</div>
+        <div class="header__title__description">Invasion Guide</div>
+    </a>
+    <nav class="header__nav">
+        {{ range $links }}
+            <a href="/{{ .location }}" class="header__nav__link">{{ .text }}</a>
+        {{ end }}
+    </nav>
 </header>

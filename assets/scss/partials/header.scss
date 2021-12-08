@@ -1,0 +1,37 @@
+.header {
+  @apply fixed top-0 left-0 bottom-0 flex flex-col bg-nw-darkgray text-right min-h-full w-48;
+
+  &__title {
+    @apply p-4 transition;
+
+    &__game {
+      @apply text-3xl;
+      line-height: 100%;
+    }
+
+    &__description {
+      @apply text-xl;
+      line-height: 100%;
+    }
+
+    &:hover, &:focus, &.active {
+      @apply text-nw-gold;
+    }
+  }
+
+  &__nav {
+    @apply grid;
+
+    &__link {
+      @apply py-3 px-4 border-t border-nw-gray text-lg transition text-nw-gold;
+
+      &:last-child {
+        @apply border-b;
+      }
+
+      &:hover, &:focus, &.active {
+        @apply bg-nw-orange text-nw-darkgray;
+      }
+    }
+  }
+}
