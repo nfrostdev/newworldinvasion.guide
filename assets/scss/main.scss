@@ -10,7 +10,7 @@
   @apply ml-52 p-8;
 
   a {
-    @apply text-nw-gold underline;
+    @apply text-nw-gold underline transition;
 
     &:hover, &:focus {
       @apply text-nw-orange;
