@@ -5,59 +5,112 @@
     "description" "The Ballista is the defender’s version of the Cannon and serves the same role as an anti-structure Siege Weapon. It has a medium rate of fire, very high damage per shot, and is most effective against structures and large, slower-moving targets."
     "image" "ballista.jpg"
     "damageType" "Siege (Physical)"
-    "crit" "1.3"
-    "headshot" "1.3"
+    "crit" "1.3x"
+    "headshot" "1.3x"
     "references" (slice
     (dict "location" "https://www.newworld.com/en-us/news/articles/fight-the-world-war" "text" "New World Official Site")
     (dict "location" "https://newworld.fandom.com/wiki/Ballista" "text" "New World Wiki")
+    )
+    )
+    (dict "name" "Explosive Cannon"
+    "description" "The Explosive Cannon, also known as Explosive Turret, fires an explosive shot that that disrupts and knocks enemies back. It’s most effective against groups of infantry and provides area denial (like at the Rally Points in front of the fort). However, its low rate of fire makes it largely ineffective against fast-moving targets."
+    "image" "cannon.jpg"
+    "damageType" "Impact (Physical)"
+    "crit" "Cannot Crit"
+    "headshot" "Cannot Headshot"
+    "references" (slice
+    (dict "location" "https://www.newworld.com/en-us/news/articles/fight-the-world-war" "text" "New World Official Site")
+    (dict "location" "https://newworld.fandom.com/wiki/Explosive_Cannon" "text" "New World Wiki")
+    )
+    )
+    (dict "name" "Repeater Turret"
+    "description" "The defender’s version of the Repeater is functionally the same as the attacker’s. High rate-of-fire, low damage per shot, and most effective against smaller, quicker targets."
+    "image" "repeater.jpg"
+    "damageType" "Thrust (Physical)"
+    "crit" "1.15x"
+    "headshot" "1.15x"
+    "references" (slice
+    (dict "location" "https://www.newworld.com/en-us/news/articles/fight-the-world-war" "text" "New World Official Site")
+    (dict "location" "https://newworld.fandom.com/wiki/Repeater_Turret" "text" "New World Wiki")
+    )
+    )
+    (dict "name" "Fire Dropper"
+    "description" "The Fire Dropper pours burning, molten liquid down on anyone below. It does high damage over time, making it most effective against groups of enemies attacking the gate."
+    "image" "firedropper.jpg"
+    "damageType" "Fire (Elemental)"
+    "crit" "Cannot Crit"
+    "headshot" "Cannot Headshot"
+    "confirmed" false
+    "references" (slice
+    (dict "location" "https://www.newworld.com/en-us/news/articles/fight-the-world-war" "text" "New World Official Site")
+    (dict "location" "https://newworld.fandom.com/wiki/Fire_Dropper" "text" "New World Wiki")
+    )
+    )
+    (dict "name" "Horn of Resilience"
+    "description" "The Horn of Resilience provides a temporary healing and defensive buff to all allies in the area. It has a lengthy cool-down but can turn the tide of battle when used at the right moment."
+    "image" "horn.jpg"
+    "damageType" "N/A"
+    "crit" "Cannot Crit"
+    "headshot" "Cannot Headshot"
+    "references" (slice
+    (dict "location" "https://www.newworld.com/en-us/news/articles/fight-the-world-war" "text" "New World Official Site")
+    (dict "location" "https://newworld.fandom.com/wiki/Horn_of_Resilience" "text" "New World Wiki")
     )
     )
     }}
     {{ $damage := resources.Get "img/damageType.svg" | minify | fingerprint }}
     {{ $crit := resources.Get "img/crit.svg" | minify | fingerprint }}
     {{ $headshot := resources.Get "img/headshot.svg" | minify | fingerprint }}
-    {{ range $fortifications }}
-        {{ $image := resources.Get (print "img/fortifications/" .image) | fingerprint }}
-        <div class="fortification">
-            <img src="{{ $image.Permalink }}" alt="New World {{ .name }}" class="fortification__img"/>
+    {{ $notconfirmed := resources.Get "img/notconfirmed.svg" | minify | fingerprint }}
+    <div class="fortifications">
+        {{ range $fortifications }}
+            {{ $image := resources.Get (print "img/fortifications/" .image) | fingerprint }}
+            <div class="fortification">
+                <img src="{{ $image.Permalink }}" alt="New World {{ .name }}" class="fortification__img"/>
 
-            <div>
-                <div class="fortification__container">
-                    <h2 class="fortification__name">{{ .name }}</h2>
-                    <p>{{ .description }}</p>
-                    <div class="fortification__stat">
+                <div>
+                    <div class="fortification__container">
+                        <h2 class="fortification__name">{{ .name }}</h2>
+                        <p>{{ .description }}</p>
+                        <div class="fortification__stat">
                 <span class="fortification__icon fortification__icon--damage" title="Damage Type"
                       aria-hidden="true">
                     {{ $damage.Content | safeHTML }}
                 </span>
-                        <span>{{ .damageType }}</span>
-                    </div>
-                    <div class="fortification__stat">
+                            {{ if eq .confirmed false }}
+                                <span class="fortification__not-confirmed fortification__icon" title="Damage type not officially confirmed.">
+                                    {{ $notconfirmed.Content | safeHTML }}
+                                </span>
+                            {{ end }}
+                            <span>{{ .damageType }}</span>
+                        </div>
+                        <div class="fortification__stat">
                 <span class="fortification__icon fortification__icon--crit" title="Critical Multiplier"
                       aria-hidden="true">
                     {{ $crit.Content | safeHTML }}
                 </span>
-                        <span>{{ .crit }}x</span>
-                    </div>
-                    <div class="fortification__stat">
+                            <span>{{ .crit }}</span>
+                        </div>
+                        <div class="fortification__stat">
                 <span class="fortification__icon fortification__icon--headshot" title="Headshot Multiplier"
                       aria-hidden="true">
                     {{ $headshot.Content | safeHTML }}
                 </span>
-                        <span>{{ .headshot }}x</span>
+                            <span>{{ .headshot }}</span>
+                        </div>
                     </div>
+                    {{ if gt (len .references) 0}}
+                        <div class="fortification__container fortification__references">
+                            <h3 class="fortification__references__h3">References</h3>
+                            <ul class="fortification__references__list">
+                                {{ range .references }}
+                                    <li><a href="{{ .location}}">{{ .text }}</a></li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                    {{ end }}
                 </div>
-                {{ if gt (len .references) 0}}
-                    <div class="fortification__container fortification__references">
-                        <h3 class="fortification__references__h3">References</h3>
-                        <ul class="fortification__references__list">
-                            {{ range .references }}
-                                <li><a href="{{ .location}}">{{ .text }}</a></li>
-                            {{ end }}
-                        </ul>
-                    </div>
-                {{ end }}
             </div>
-        </div>
-    {{ end }}
+        {{ end }}
+    </div>
 {{ end }}

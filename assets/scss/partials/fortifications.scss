@@ -2,6 +2,10 @@
   @apply flex flex-col bg-nw-darkgray rounded-md shadow;
   @apply lg:flex-row;
 
+  &s {
+    @apply grid gap-8 pt-4;
+  }
+
   &__img {
     @apply w-full rounded-t-md object-cover;
     @apply lg:max-w-sm lg:rounded-t-none lg:rounded-l-md;
