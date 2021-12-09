@@ -5,4 +5,33 @@
         {{ partial "checklist/stones" }}
         {{ partial "checklist/coatings" }}
     </div>
+    <script>
+        function handleItemCheckedStates() {
+            document.querySelectorAll('.checklist__items').forEach(checklist => {
+                const items = checklist.querySelectorAll('.checklist__item')
+                const opacityClass = 'opacity-25'
+                let checkedItems = 0
+                items.forEach(item => {
+                    item.classList.remove(opacityClass)
+                    if (item.querySelector('input').checked) {
+                        checkedItems++
+                    }
+                })
+                if (checkedItems > 0) {
+                    items.forEach(item => {
+                        if (!item.querySelector('input').checked) {
+                            item.classList.add(opacityClass)
+                        }
+                    })
+                }
+            })
+        }
+
+        window.addEventListener('load', function () {
+            handleItemCheckedStates()
+            document.querySelectorAll('.checklist__item').forEach(item => {
+                item.querySelector('input').addEventListener('click', handleItemCheckedStates)
+            })
+        })
+    </script>
 {{ end }}

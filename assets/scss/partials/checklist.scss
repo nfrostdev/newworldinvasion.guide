@@ -6,7 +6,7 @@
   }
 
   &__item {
-    @apply flex bg-nw-darkgray px-3 py-2 rounded-md leading-tight;
+    @apply flex justify-start items-center bg-nw-darkgray px-3 py-2 rounded-md leading-tight transition;
 
     &s {
       @apply grid gap-4 justify-start items-start;
@@ -47,6 +47,10 @@
 
     &__description {
       @apply italic text-xs mt-1;
+    }
+
+    &__input {
+      @apply mr-2 w-5 h-5 bg-nw-gray cursor-pointer;
     }
   }
 }

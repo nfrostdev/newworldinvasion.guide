@@ -5,6 +5,8 @@
         {{ $duration := resources.Get "img/duration.svg" | minify | fingerprint }}
         {{ range .items }}
             <div class="checklist__item">
+                <label for="{{ .name | urlize }}" class="sr-only">{{ .name }} Checkbox</label>
+                <input type="checkbox" id="{{ .name | urlize }}" class="checklist__item__input"/>
                 <div class="checklist__item__stats">
                     <div class="checklist__item__stat">
                     <span class="checklist__item__icon checklist__item__icon--damage" title="Bonus Damage"
