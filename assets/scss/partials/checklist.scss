@@ -1,0 +1,29 @@
+.checklist {
+  @apply grid gap-8;
+
+  &__container {
+    @apply grid gap-4;
+    @apply md:grid-cols-2;
+    @apply lg:grid-cols-4;
+  }
+
+  &__item {
+    @apply bg-nw-darkgray p-3 rounded-md leading-tight;
+
+    &__info {
+      @apply flex justify-start items-center;
+    }
+
+    &__name {
+      @apply no-underline;
+    }
+
+    &__img {
+      @apply w-8 h-8 mr-1;
+    }
+
+    &__description {
+      @apply italic text-xs mt-1;
+    }
+  }
+}
