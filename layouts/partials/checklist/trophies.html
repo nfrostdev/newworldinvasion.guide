@@ -1,0 +1,27 @@
+{{ $items := slice
+(dict
+"name" "Major Corrupted Combat Trophy"
+"image" "https://cdn.nwdb.info/db/images/live/v2/icons/items/housingitem/house_housingitem_buff_damage_vs_corrupted_t3.png"
+"link" "https://nwdb.info/db/item/house_housingitem_buff_damage_vs_corrupted_t3"
+"damage" "5%"
+"duration" "∞"
+)
+(dict
+"name" "Basic Corrupted Combat Trophy"
+"image" "https://cdn.nwdb.info/db/images/live/v2/icons/items/housingitem/house_housingitem_buff_damage_vs_corrupted_t2.png"
+"link" "https://nwdb.info/db/item/house_housingitem_buff_damage_vs_corrupted_t2"
+"damage" "4%"
+"duration" "∞"
+)
+(dict
+"name" "Minor Corrupted Combat Trophy"
+"image" "https://cdn.nwdb.info/db/images/live/v2/icons/items/housingitem/house_housingitem_buff_damage_vs_corrupted_t1.png"
+"link" "https://nwdb.info/db/item/house_housingitem_buff_damage_vs_corrupted_t1"
+"damage" "3%"
+"duration" "∞"
+)
+}}
+
+{{ partial "checklist/container" (dict "title" "Corrupted Combat Trophies (House 1)" "items" $items) }}
+{{ partial "checklist/container" (dict "title" "Corrupted Combat Trophies (House 2)" "items" $items) }}
+{{ partial "checklist/container" (dict "title" "Corrupted Combat Trophies (House 3)" "items" $items) }}

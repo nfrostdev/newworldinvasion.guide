@@ -1,15 +1,20 @@
+.total-bonus-damage {
+  @apply text-nw-orange text-xl font-medium mt-4;
+}
+
 .checklist {
   @apply grid gap-4;
+  @apply md:grid-cols-2;
 
   &__h2 {
     @apply text-2xl mb-2 mt-6;
   }
 
   &__item {
-    @apply flex justify-start items-center bg-nw-darkgray px-3 py-2 rounded-md leading-tight transition;
+    @apply flex justify-start items-center bg-nw-darkgray p-3 rounded-md leading-tight transition;
 
     &s {
-      @apply grid gap-4 justify-start items-start;
+      @apply grid gap-4;
     }
 
     &__info {
@@ -24,12 +29,12 @@
       @apply flex justify-start items-center font-medium;
 
       &s {
-        @apply grid grid-cols-2 w-32 mr-1;
+        @apply grid grid-cols-2 w-28 mr-1;
       }
     }
 
     &__img {
-      @apply w-8 h-8 mr-1;
+      @apply w-12 h-12 mr-3;
     }
 
     &__icon {
@@ -50,7 +55,7 @@
     }
 
     &__input {
-      @apply mr-2 w-5 h-5 bg-nw-gray cursor-pointer;
+      @apply mr-4 ml-3 w-6 h-6 bg-nw-gray cursor-pointer;
     }
   }
 }

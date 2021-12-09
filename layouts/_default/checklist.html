@@ -1,12 +1,15 @@
 {{ define "main" }}
     {{ .Content }}
 
+    <div class="total-bonus-damage">Total Bonus Damage: <span id="totalBonusDamage">0</span>%</div>
     <div class="checklist">
         {{ partial "checklist/stones" }}
         {{ partial "checklist/coatings" }}
+        {{ partial "checklist/trophies" }}
     </div>
     <script>
         function handleItemCheckedStates() {
+            let totalBonusDamage = 0
             document.querySelectorAll('.checklist__items').forEach(checklist => {
                 const items = checklist.querySelectorAll('.checklist__item')
                 const opacityClass = 'opacity-25'
@@ -15,6 +18,8 @@
                     item.classList.remove(opacityClass)
                     if (item.querySelector('input').checked) {
                         checkedItems++
+                        const value = parseInt(item.querySelector('.checklist__item__damage-value').textContent.replace('%', ''))
+                        totalBonusDamage += value
                     }
                 })
                 if (checkedItems > 0) {
@@ -25,6 +30,7 @@
                     })
                 }
             })
+            document.getElementById('totalBonusDamage').innerText = totalBonusDamage.toString()
         }
 
         window.addEventListener('load', function () {
