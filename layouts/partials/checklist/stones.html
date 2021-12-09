@@ -1,0 +1,28 @@
+{{ $items := slice
+(dict
+"name" "Powerful Honing Stone"
+"description" "Increases weapon damage by 7% for 40 minutes."
+"image" "https://cdn.nwdb.info/db/images/live/v2/icons/items/consumable/honingstonet5.png"
+"link" "https://nwdb.info/db/item/honingstonet5"
+)
+(dict
+"name" "Strong Honing Stone"
+"description" "Increases weapon damage by 6% for 35 minutes."
+"image" "https://cdn.nwdb.info/db/images/live/v2/icons/items/consumable/honingstonet4.png"
+"link" "https://nwdb.info/db/item/honingstonet4"
+)
+(dict
+"name" "Common Honing Stone"
+"description" "Increases weapon damage by 5% for 30 minutes."
+"image" "https://cdn.nwdb.info/db/images/live/v2/icons/items/consumable/honingstonet3.png"
+"link" "https://nwdb.info/db/item/honingstonet3"
+)
+(dict
+"name" "Weak Honing Stone"
+"description" "Increases weapon damage by 4% for 25 minutes."
+"image" "https://cdn.nwdb.info/db/images/live/v2/icons/items/consumable/honingstonet2.png"
+"link" "https://nwdb.info/db/item/honingstonet2"
+)
+}}
+
+{{ partial "checklist/container" (dict "title" "Honing Stone" "items" $items) }}

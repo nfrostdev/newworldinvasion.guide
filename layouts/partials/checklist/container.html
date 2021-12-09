@@ -1,0 +1,14 @@
+<div class="checklist__container">
+    <h2 class="checklist__h2">{{ .title }}</h2>
+    <div class="checklist__items">
+        {{ range .items }}
+            <div class="checklist__item">
+                <a class="checklist__item__info" href="{{ .link }}" target="_blank" rel="noopener">
+                    <img src="{{ .image }}" alt="{{ .name }} Icon" class="checklist__item__img"/>
+                    <span>{{ .name }}</span>
+                </a>
+                <div class="checklist__item__description">{{ .description }}</div>
+            </div>
+        {{ end}}
+    </div>
+</div>
