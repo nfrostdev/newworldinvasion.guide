@@ -3,6 +3,7 @@
     {{ $fortifications := slice
     (dict "name" "Ballista"
     "description" "The Ballista is the defender’s version of the Cannon and serves the same role as an anti-structure Siege Weapon. It has a medium rate of fire, very high damage per shot, and is most effective against structures and large, slower-moving targets."
+    "image" "ballista.jpg"
     "damageType" "Siege (Physical)"
     "crit" "1.3"
     "headshot" "1.3"
@@ -16,37 +17,47 @@
     {{ $crit := resources.Get "img/crit.svg" | minify | fingerprint }}
     {{ $headshot := resources.Get "img/headshot.svg" | minify | fingerprint }}
     {{ range $fortifications }}
+        {{ $image := resources.Get (print "img/fortifications/" .image) | fingerprint }}
         <div class="fortification">
-            <h2 class="fortification__name">{{ .name }}</h2>
-            <p>{{ .description }}</p>
-            <div class="fortification__stat">
+            <img src="{{ $image.Permalink }}" alt="New World {{ .name }}" class="fortification__img"/>
+
+            <div>
+                <div class="fortification__container">
+                    <h2 class="fortification__name">{{ .name }}</h2>
+                    <p>{{ .description }}</p>
+                    <div class="fortification__stat">
                 <span class="fortification__icon fortification__icon--damage" title="Damage Type"
                       aria-hidden="true">
                     {{ $damage.Content | safeHTML }}
                 </span>
-                <span>{{ .damageType }}</span>
-            </div>
-            <div class="fortification__stat">
+                        <span>{{ .damageType }}</span>
+                    </div>
+                    <div class="fortification__stat">
                 <span class="fortification__icon fortification__icon--crit" title="Critical Multiplier"
                       aria-hidden="true">
                     {{ $crit.Content | safeHTML }}
                 </span>
-                <span>{{ .crit }}x</span>
-            </div>
-            <div class="fortification__stat">
+                        <span>{{ .crit }}x</span>
+                    </div>
+                    <div class="fortification__stat">
                 <span class="fortification__icon fortification__icon--headshot" title="Headshot Multiplier"
                       aria-hidden="true">
                     {{ $headshot.Content | safeHTML }}
                 </span>
-                <span>{{ .headshot }}x</span>
-            </div>
-            {{ if gt (len .references) 0}}
-                <div>
-                    {{ range .references }}
-                        <a href="{{ .location}}">{{ .text }}</a>
-                    {{ end }}
+                        <span>{{ .headshot }}x</span>
+                    </div>
                 </div>
-            {{ end }}
+                {{ if gt (len .references) 0}}
+                    <div class="fortification__container fortification__references">
+                        <h3 class="fortification__references__h3">References</h3>
+                        <ul class="fortification__references__list">
+                            {{ range .references }}
+                                <li><a href="{{ .location}}">{{ .text }}</a></li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                {{ end }}
+            </div>
         </div>
     {{ end }}
 {{ end }}
