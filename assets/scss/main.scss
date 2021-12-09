@@ -8,7 +8,8 @@
 @import "partials/checklist";
 
 .main {
-  @apply ml-52 p-8;
+  @apply p-8;
+  @apply md:ml-52;
 
   a {
     @apply text-nw-gold transition;

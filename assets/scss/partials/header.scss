@@ -1,17 +1,20 @@
 .header {
   font-family: 'IM Fell DW Pica', serif;
-  @apply fixed top-0 left-0 bottom-0 flex flex-col bg-nw-darkgray text-right min-h-full w-52;
+  @apply flex justify-between bg-nw-darkgray h-16;
+  @apply md:fixed md:top-0 md:left-0 md:bottom-0 md:flex-col md:justify-start md:w-52 md:min-h-full md:text-right;
 
   &__title {
-    @apply p-6 transition;
+    @apply flex p-6 transition text-xl;
+    @apply md:flex-col;
 
     &__game {
-      @apply text-3xl;
+      @apply md:text-3xl;
       line-height: 100%;
     }
 
     &__description {
-      @apply text-xl;
+      @apply ml-1;
+      @apply md:text-xl md:ml-0;
       line-height: 100%;
     }
 
@@ -20,8 +23,18 @@
     }
   }
 
+  &__toggle {
+    @apply w-16 h-16 flex flex-col justify-center items-center;
+    @apply md:hidden;
+  }
+
   &__nav {
-    @apply grid;
+    @apply grid fixed top-0 right-0 mt-16 text-right bg-nw-darkgray w-full transition-all transform opacity-0 origin-right scale-x-50 pointer-events-none;
+    @apply md:relative md:left-auto md:mt-0;
+
+    &.shown {
+      @apply scale-x-100 opacity-100;
+    }
 
     &__link {
       @apply py-3 px-4 border-t border-nw-gray text-lg transition text-nw-gold;
@@ -31,7 +44,7 @@
       }
 
       &:last-child {
-        @apply border-b;
+        @apply md:border-b;
       }
 
       &:hover, &:focus, &.active {
@@ -43,4 +56,8 @@
       }
     }
   }
+}
+
+.hamburger {
+  @apply block w-6 h-px bg-nw-lightgray my-1 rounded;
 }

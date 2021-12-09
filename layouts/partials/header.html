@@ -14,6 +14,11 @@ $links := slice
         <div class="header__title__game">New World</div>
         <div class="header__title__description">Invasion Guide</div>
     </a>
+    <button class="header__toggle" title="Toggle Mobile Navigation">
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+    </button>
     <nav class="header__nav">
         {{ range $links }}
             <a href="/{{ .location }}"
@@ -23,4 +28,9 @@ $links := slice
             </a>
         {{ end }}
     </nav>
+    <script>
+        document.querySelector('.header__toggle').addEventListener('click', function () {
+            document.querySelector('.header__nav').classList.toggle('shown')
+        })
+    </script>
 </header>
