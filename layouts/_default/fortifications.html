@@ -1,5 +1,6 @@
 {{ define "main" }}
     {{ .Content }}
+    {{/* TODO: Specify Enemies to target with each weapon. */}}
     {{ $fortifications := slice
     (dict "name" "Ballista"
     "description" "The Ballista is the defender’s version of the Cannon and serves the same role as an anti-structure Siege Weapon. It has a medium rate of fire, very high damage per shot, and is most effective against structures and large, slower-moving targets."
@@ -78,7 +79,8 @@
                     {{ $damage.Content | safeHTML }}
                 </span>
                             {{ if eq .confirmed false }}
-                                <span class="fortification__not-confirmed fortification__icon" title="Damage type not officially confirmed.">
+                                <span class="fortification__not-confirmed fortification__icon"
+                                      title="Damage type not officially confirmed.">
                                     {{ $notconfirmed.Content | safeHTML }}
                                 </span>
                             {{ end }}
