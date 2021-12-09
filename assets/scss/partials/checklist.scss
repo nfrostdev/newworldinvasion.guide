@@ -1,14 +1,18 @@
 .checklist {
   @apply grid gap-8;
 
-  &__container {
-    @apply grid gap-4;
-    @apply md:grid-cols-2;
-    @apply lg:grid-cols-4;
+  &__h2 {
+    @apply text-2xl mb-2 mt-6;
   }
 
   &__item {
     @apply bg-nw-darkgray p-3 rounded-md leading-tight;
+
+    &s {
+      @apply grid gap-4;
+      @apply md:grid-cols-2;
+      @apply lg:grid-cols-4;
+    }
 
     &__info {
       @apply flex justify-start items-center;
