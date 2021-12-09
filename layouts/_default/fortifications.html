@@ -12,13 +12,20 @@
     )
     )
     }}
+    {{ $damage := resources.Get "img/damageType.svg" | minify | fingerprint }}
     {{ $crit := resources.Get "img/crit.svg" | minify | fingerprint }}
     {{ $headshot := resources.Get "img/headshot.svg" | minify | fingerprint }}
     {{ range $fortifications }}
         <div class="fortification">
             <h2 class="fortification__name">{{ .name }}</h2>
             <p>{{ .description }}</p>
-            <div>Damage Type: {{ .damageType }}</div>
+            <div class="fortification__stat">
+                <span class="fortification__icon fortification__icon--damage" title="Damage Type"
+                      aria-hidden="true">
+                    {{ $damage.Content | safeHTML }}
+                </span>
+                <span>{{ .damageType }}</span>
+            </div>
             <div class="fortification__stat">
                 <span class="fortification__icon fortification__icon--crit" title="Critical Multiplier"
                       aria-hidden="true">

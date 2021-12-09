@@ -10,15 +10,18 @@
   }
 
   &__icon {
-    @apply inline-block text-nw-orange mr-1 w-4;
+    @apply inline-block text-nw-orange mr-1 w-4 transform;
+
+    &--damage {
+      @apply scale-75 rotate-45;
+    }
 
     &--crit {
-      // TODO: SCALE ME DOWN, text doesnt work
-      @apply text-sm;
+      @apply scale-50;
     }
 
     &--headshot {
-      @apply transform rotate-12;
+      @apply scale-75;
     }
   }
 }
