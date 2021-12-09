@@ -2,6 +2,7 @@
     {{ .Content }}
 
     <div class="total-bonus-damage">Total Bonus Damage: <span id="totalBonusDamage">0</span>%</div>
+    <div class="example-damage">Example Damage Bonus: 231 ➤ <span id="exampleBonusDamage"></span></div>
     <div class="checklist">
         {{ partial "checklist/stones" }}
         {{ partial "checklist/coatings" }}
@@ -10,6 +11,7 @@
     <script>
         function handleItemCheckedStates() {
             let totalBonusDamage = 0
+            let exampleBonusDamage = 231
             document.querySelectorAll('.checklist__items').forEach(checklist => {
                 const items = checklist.querySelectorAll('.checklist__item')
                 const opacityClass = 'opacity-25'
@@ -31,6 +33,13 @@
                 }
             })
             document.getElementById('totalBonusDamage').innerText = totalBonusDamage.toString()
+
+            const exampleBonusEl = document.getElementById('exampleBonusDamage')
+            if (totalBonusDamage > 0) {
+                exampleBonusEl.innerText = (exampleBonusDamage * ((100 + totalBonusDamage) / 100)).toFixed(0).toLocaleString()
+            } else {
+                exampleBonusEl.innerText = '231'
+            }
         }
 
         window.addEventListener('load', function () {

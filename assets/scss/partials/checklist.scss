@@ -2,6 +2,10 @@
   @apply text-nw-orange text-xl font-medium mt-4;
 }
 
+.example-damage {
+  @apply text-nw-orange font-medium;
+}
+
 .checklist {
   @apply grid gap-4;
   @apply md:grid-cols-2;
