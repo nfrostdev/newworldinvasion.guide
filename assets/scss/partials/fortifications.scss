@@ -1,5 +1,5 @@
 .fortification {
-  @apply flex flex-col bg-nw-darkgray rounded-md shadow;
+  @apply flex flex-col bg-nw-darkgray rounded-md;
 
   &s {
     @apply grid gap-8 pt-4 justify-start items-start;
