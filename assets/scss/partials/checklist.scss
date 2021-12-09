@@ -1,13 +1,12 @@
 .checklist {
-  @apply grid gap-8 justify-start items-start;
-  @apply md:grid-cols-2;
+  @apply grid gap-4;
 
   &__h2 {
     @apply text-2xl mb-2 mt-6;
   }
 
   &__item {
-    @apply bg-nw-darkgray p-3 rounded-md leading-tight;
+    @apply flex bg-nw-darkgray px-3 py-2 rounded-md leading-tight;
 
     &s {
       @apply grid gap-4 justify-start items-start;
@@ -21,8 +20,29 @@
       @apply no-underline;
     }
 
+    &__stat {
+      @apply flex justify-start items-center font-medium;
+
+      &s {
+        @apply grid grid-cols-2 w-32 mr-1;
+      }
+    }
+
     &__img {
       @apply w-8 h-8 mr-1;
+    }
+
+    &__icon {
+      @apply inline-block text-nw-orange w-4 transform;
+
+      &--damage {
+        @apply scale-50;
+      }
+
+      &--duration {
+        @apply scale-75 mr-1;
+      }
+
     }
 
     &__description {
