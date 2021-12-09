@@ -36,7 +36,17 @@
         window.addEventListener('load', function () {
             handleItemCheckedStates()
             document.querySelectorAll('.checklist__item').forEach(item => {
-                item.querySelector('input').addEventListener('click', handleItemCheckedStates)
+                item.querySelector('input').addEventListener('click', function () {
+                    // Only allow one item to be checked per category.
+                    const input = item.querySelector('input')
+                    if (input.checked) {
+                        item.parentNode.querySelectorAll('input').forEach(input => {
+                            input.checked = false
+                        })
+                        input.checked = true
+                    }
+                    handleItemCheckedStates()
+                })
             })
         })
     </script>

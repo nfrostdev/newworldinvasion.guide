@@ -1,35 +1,36 @@
+{{ $title := .title }}
 <div class="checklist__container">
-    <h2 class="checklist__h2">{{ .title }}</h2>
+    <h2 class="checklist__h2">{{ $title }}</h2>
     <div class="checklist__items">
         {{ $damage := resources.Get "img/crit.svg" | minify | fingerprint }}
         {{ $duration := resources.Get "img/duration.svg" | minify | fingerprint }}
         {{ range .items }}
-            <div class="checklist__item">
-                <label for="{{ .name | urlize }}" class="sr-only">{{ .name }} Checkbox</label>
-                <input type="checkbox" id="{{ .name | urlize }}" class="checklist__item__input"/>
+            {{ $id := (print .name $title) | urlize }}
+            <label for="{{ $id }}" class="checklist__item" title="{{ .name }} Checkbox">
+                <input type="checkbox" id="{{ $id }}" class="checklist__item__input"/>
                 <img src="{{ .image }}" alt="{{ .name }} Icon" class="checklist__item__img"/>
-                <div class="checklist__item__container">
+                <span class="checklist__item__container">
                     <a class="checklist__item__info" href="{{ .link }}" target="_blank" rel="noopener">
                         <span>{{ .name }}</span>
                     </a>
-                    <div class="checklist__item__stats">
-                        <div class="checklist__item__stat">
+                    <span class="checklist__item__stats">
+                        <span class="checklist__item__stat">
                         <span class="checklist__item__icon checklist__item__icon--damage" title="Bonus Damage"
                               aria-hidden="true">
                             {{ $damage.Content | safeHTML }}
                         </span>
                             <span class="checklist__item__damage-value">{{ .damage }}</span>
-                        </div>
-                        <div class="checklist__item__stat">
+                        </span>
+                        <span class="checklist__item__stat">
                         <span class="checklist__item__icon checklist__item__icon--duration" title="Item Duration"
                               aria-hidden="true">
                             {{ $duration.Content | safeHTML }}
                         </span>
                             <span>{{ .duration }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </span>
+                    </span>
+                </span>
+            </label>
         {{ end}}
     </div>
 </div>

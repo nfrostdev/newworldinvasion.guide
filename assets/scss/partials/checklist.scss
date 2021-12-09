@@ -11,7 +11,7 @@
   }
 
   &__item {
-    @apply flex justify-start items-center bg-nw-darkgray p-3 rounded-md leading-tight transition;
+    @apply flex justify-start items-center bg-nw-darkgray p-3 rounded-md leading-tight transition cursor-pointer;
 
     &s {
       @apply grid gap-4;
@@ -55,7 +55,7 @@
     }
 
     &__input {
-      @apply mr-4 ml-3 w-6 h-6 bg-nw-gray cursor-pointer;
+      @apply mr-4 ml-3 w-6 h-6 bg-nw-gray;
     }
   }
 }
