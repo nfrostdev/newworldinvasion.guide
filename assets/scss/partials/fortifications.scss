@@ -37,16 +37,4 @@
       @apply scale-75;
     }
   }
-
-  &__references {
-    @apply border-t border-nw-gray text-sm;
-
-    &__h3 {
-      @apply text-lg;
-    }
-
-    &__list {
-      @apply list-disc list-inside;
-    }
-  }
 }

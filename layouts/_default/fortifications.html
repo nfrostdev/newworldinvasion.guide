@@ -8,10 +8,6 @@
     "damageType" "Siege (Physical)"
     "crit" "1.3x"
     "headshot" "1.3x"
-    "references" (slice
-    (dict "location" "https://www.newworld.com/en-us/news/articles/fight-the-world-war" "text" "New World Official Site")
-    (dict "location" "https://newworld.fandom.com/wiki/Ballista" "text" "New World Wiki")
-    )
     )
     (dict "name" "Explosive Cannon"
     "description" "The Explosive Cannon, also known as Explosive Turret, fires an explosive shot that that disrupts and knocks enemies back. It’s most effective against groups of infantry and provides area denial (like at the Rally Points in front of the fort). However, its low rate of fire makes it largely ineffective against fast-moving targets."
@@ -19,10 +15,6 @@
     "damageType" "Impact (Physical)"
     "crit" "Cannot Crit"
     "headshot" "Cannot Headshot"
-    "references" (slice
-    (dict "location" "https://www.newworld.com/en-us/news/articles/fight-the-world-war" "text" "New World Official Site")
-    (dict "location" "https://newworld.fandom.com/wiki/Explosive_Cannon" "text" "New World Wiki")
-    )
     )
     (dict "name" "Repeater Turret"
     "description" "The defender’s version of the Repeater is functionally the same as the attacker’s. High rate-of-fire, low damage per shot, and most effective against smaller, quicker targets."
@@ -30,10 +22,6 @@
     "damageType" "Thrust (Physical)"
     "crit" "1.15x"
     "headshot" "1.15x"
-    "references" (slice
-    (dict "location" "https://www.newworld.com/en-us/news/articles/fight-the-world-war" "text" "New World Official Site")
-    (dict "location" "https://newworld.fandom.com/wiki/Repeater_Turret" "text" "New World Wiki")
-    )
     )
     (dict "name" "Fire Dropper"
     "description" "The Fire Dropper pours burning, molten liquid down on anyone below. It does high damage over time, making it most effective against groups of enemies attacking the gate."
@@ -42,10 +30,6 @@
     "crit" "Cannot Crit"
     "headshot" "Cannot Headshot"
     "confirmed" false
-    "references" (slice
-    (dict "location" "https://www.newworld.com/en-us/news/articles/fight-the-world-war" "text" "New World Official Site")
-    (dict "location" "https://newworld.fandom.com/wiki/Fire_Dropper" "text" "New World Wiki")
-    )
     )
     (dict "name" "Horn of Resilience"
     "description" "The Horn of Resilience provides a temporary healing and defensive buff to all allies in the area. It has a lengthy cool-down but can turn the tide of battle when used at the right moment."
@@ -53,10 +37,6 @@
     "damageType" "N/A"
     "crit" "Cannot Crit"
     "headshot" "Cannot Headshot"
-    "references" (slice
-    (dict "location" "https://www.newworld.com/en-us/news/articles/fight-the-world-war" "text" "New World Official Site")
-    (dict "location" "https://newworld.fandom.com/wiki/Horn_of_Resilience" "text" "New World Wiki")
-    )
     )
     }}
     {{ $damage := resources.Get "img/damageType.svg" | minify | fingerprint }}
@@ -101,16 +81,6 @@
                             <span>{{ .headshot }}</span>
                         </div>
                     </div>
-                    {{ if gt (len .references) 0}}
-                        <div class="fortification__container fortification__references">
-                            <h3 class="fortification__references__h3">References</h3>
-                            <ul class="fortification__references__list">
-                                {{ range .references }}
-                                    <li><a href="{{ .location}}">{{ .text }}</a></li>
-                                {{ end }}
-                            </ul>
-                        </div>
-                    {{ end }}
                 </div>
             </div>
         {{ end }}
