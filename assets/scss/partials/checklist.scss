@@ -7,7 +7,7 @@
 }
 
 .checklist {
-  @apply grid gap-4;
+  @apply grid gap-4 justify-start items-start;
   @apply md:grid-cols-2;
 
   &__h2 {
@@ -15,10 +15,10 @@
   }
 
   &__item {
-    @apply flex justify-start items-center bg-nw-darkgray p-3 rounded-md leading-tight transition cursor-pointer;
+    @apply relative flex justify-start items-center bg-nw-darkgray p-3 rounded-md leading-tight transition cursor-pointer;
 
     &s {
-      @apply grid gap-4;
+      @apply grid gap-4 justify-start items-start;
     }
 
     &__info {
@@ -51,7 +51,18 @@
       &--duration {
         @apply scale-75 mr-1;
       }
+    }
 
+    &.checked {
+      .checklist__item__check {
+        @apply opacity-100 bg-green-700 text-white;
+      }
+    }
+
+    &__check {
+      @apply absolute h-6 w-6 bg-black text-nw-darkgray rounded-full opacity-25;
+      left: -0.75rem;
+      padding: 0.375rem;
     }
 
     &__description {
@@ -59,7 +70,7 @@
     }
 
     &__input {
-      @apply mr-4 ml-3 w-6 h-6 bg-nw-gray;
+      @apply hidden;
     }
   }
 }

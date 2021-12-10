@@ -4,9 +4,13 @@
     <div class="checklist__items">
         {{ $damage := resources.Get "img/crit.svg" | minify | fingerprint }}
         {{ $duration := resources.Get "img/duration.svg" | minify | fingerprint }}
+        {{ $check := resources.Get "img/check.svg" | minify | fingerprint }}
         {{ range .items }}
             {{ $id := (print .name $title) | urlize }}
             <label for="{{ $id }}" class="checklist__item" title="{{ .name }} Checkbox">
+                <span class="checklist__item__check" aria-hidden="true">
+                    {{ $check.Content | safeHTML }}
+                </span>
                 <input type="checkbox" id="{{ $id }}" class="checklist__item__input"/>
                 <img src="{{ .image }}" alt="{{ .name }} Icon" class="checklist__item__img"/>
                 <span class="checklist__item__container">

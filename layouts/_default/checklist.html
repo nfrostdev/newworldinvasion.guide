@@ -12,14 +12,16 @@
         function handleItemCheckedStates() {
             let totalBonusDamage = 0
             let exampleBonusDamage = 232
+            const opacityClass = 'opacity-25'
+            const checkedClass = 'checked'
             document.querySelectorAll('.checklist__items').forEach(checklist => {
                 const items = checklist.querySelectorAll('.checklist__item')
-                const opacityClass = 'opacity-25'
                 let checkedItems = 0
                 items.forEach(item => {
-                    item.classList.remove(opacityClass)
+                    item.classList.remove(opacityClass, checkedClass)
                     if (item.querySelector('input').checked) {
                         checkedItems++
+                        item.classList.add(checkedClass)
                         const value = parseInt(item.querySelector('.checklist__item__damage-value').textContent.replace('%', ''))
                         totalBonusDamage += value
                     }
