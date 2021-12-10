@@ -3,28 +3,28 @@
     {{/* TODO: Specify Enemies to target with each weapon. */}}
     {{ $fortifications := slice
     (dict "name" "Ballista"
-    "description" "The Ballista is the defender’s version of the Cannon and serves the same role as an anti-structure Siege Weapon. It has a medium rate of fire, very high damage per shot, and is most effective against structures and large, slower-moving targets."
+    "description" "Medium rate of fire, very high damage per shot, and is most effective against structures and large, slower-moving targets."
     "image" "ballista.jpg"
     "damageType" "Siege (Physical)"
     "crit" "1.3x"
     "headshot" "1.3x"
     )
     (dict "name" "Explosive Cannon"
-    "description" "The Explosive Cannon, also known as Explosive Turret, fires an explosive shot that that disrupts and knocks enemies back. It’s most effective against groups of infantry and provides area denial (like at the Rally Points in front of the fort). However, its low rate of fire makes it largely ineffective against fast-moving targets."
+    "description" "The Explosive Cannon, also known as Explosive Turret, fires an explosive shot that that disrupts and knocks enemies back. It’s most effective against groups of infantry and provides area denial. However, its low rate of fire makes it largely ineffective against fast-moving or targets with larger health pools."
     "image" "cannon.jpg"
     "damageType" "Impact (Physical)"
     "crit" "Cannot Crit"
     "headshot" "Cannot Headshot"
     )
     (dict "name" "Repeater Turret"
-    "description" "The defender’s version of the Repeater is functionally the same as the attacker’s. High rate-of-fire, low damage per shot, and most effective against smaller, quicker targets."
+    "description" "High rate-of-fire, low damage per shot, and most effective against smaller, quicker targets."
     "image" "repeater.jpg"
     "damageType" "Thrust (Physical)"
     "crit" "1.15x"
     "headshot" "1.15x"
     )
     (dict "name" "Fire Dropper"
-    "description" "The Fire Dropper pours burning, molten liquid down on anyone below. It does high damage over time, making it most effective against groups of enemies attacking the gate."
+    "description" "The Fire Dropper pours burning, molten liquid down on enemies below. It does high damage over time, making it most effective against bosses attacking the gate."
     "image" "firedropper.jpg"
     "damageType" "Fire (Elemental)"
     "crit" "Cannot Crit"
