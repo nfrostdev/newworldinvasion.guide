@@ -4,13 +4,9 @@
     <div class="total-bonus-damage">Total Bonus Damage: <span id="totalBonusDamage">0</span>%</div>
     <div class="example-damage">Example Damage Bonus: 232 ➤ <span id="exampleBonusDamage"></span></div>
     <div class="checklist">
-        <div class="checklist__group checklist__group--damage">
-            {{ partial "checklist/coatings" }}
-            {{ partial "checklist/stones" }}
-        </div>
-        <div class="checklist__group checklist__group--houses">
-            {{ partial "checklist/trophies" }}
-        </div>
+        {{ partial "checklist/coatings" }}
+        {{ partial "checklist/stones" }}
+        {{ partial "checklist/trophies" }}
     </div>
     <script>
         function handleItemCheckedStates() {

@@ -7,22 +7,17 @@
 }
 
 .checklist {
-  @apply flex flex-col space-y-4 justify-start items-start;
-
-  &__group {
-    @apply inline-grid justify-start items-start;
-    @apply lg:grid-cols-2 lg:gap-8;
-  }
+  @apply flex flex-wrap justify-start items-start;
 
   &__h2 {
     @apply text-2xl mb-2 mt-6;
   }
 
   &__item {
-    @apply relative flex justify-start items-center bg-nw-darkgray p-3 pr-4 rounded-md leading-tight transition cursor-pointer;
+    @apply relative flex justify-start items-center bg-nw-darkgray p-3 pr-4 rounded leading-tight transition cursor-pointer w-80;
 
     &s {
-      @apply grid gap-4 justify-start items-start;
+      @apply grid gap-4 justify-start items-start mr-8;
     }
 
     &__name {
@@ -46,9 +41,11 @@
     }
 
     &__link {
-      @apply absolute w-5 h-5;
-      top: -0.5rem;
-      right: -0.5rem;
+      @apply absolute top-0 right-0 w-6 h-6 bg-black bg-opacity-50 rounded-tr rounded-bl p-1 transition;
+
+      &:hover, &:focus {
+        @apply bg-opacity-100;
+      }
     }
 
     &__icon {
