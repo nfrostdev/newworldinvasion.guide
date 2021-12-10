@@ -1,0 +1,31 @@
+name: Production Firebase Deployment
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  build:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.90.0"
+          extended: true
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: hugo --minify --baseURL="https://newworldinvasion.guide"
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: public
+          path: public
+          retention-days: 1
+      - name: Install Firebase Tools
+        run: npm install firebase-tools -g
+      - name: Deploy to Firebase
+        run: firebase deploy --project newworldinvasionguide --token "${{ secrets.FIREBASE_TOKEN }}" -m "${{ github.event.head_commit.message }}"
