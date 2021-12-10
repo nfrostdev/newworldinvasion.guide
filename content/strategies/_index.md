@@ -6,4 +6,9 @@ description: "Work in progress."
 ---
 
 # Strategies
-Work in progress.
+
+## 5-2-2-1
+- 5 Gate Groups, each with a designated Gate to defend.
+- 2 Flexible Groups
+- 2 Siege Groups
+- 1 Repair Group

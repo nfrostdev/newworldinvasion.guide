@@ -38,3 +38,12 @@ p {
     @apply inline-block w-4 h-4 mr-px align-middle;
   }
 }
+
+ul {
+  @apply list-disc list-inside;
+}
+
+.number {
+  font-family: "Assistant", sans-serif;
+  @apply font-medium;
+}
