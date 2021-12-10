@@ -17,7 +17,7 @@
     {{ if eq .Site.IsServer false }}
         {{ $css := $css | fingerprint | minify | resources.PostProcess}}
     {{ end }}
-    <link rel="stylesheet" href="{{ $css.Permalink}}"/>
+    <style>{{ $css.Content | safeCSS }}</style>
 </head>
 <body>
 {{ partial "header" . }}
