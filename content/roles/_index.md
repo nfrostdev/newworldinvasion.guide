@@ -23,3 +23,8 @@ Flexible (Flex) groups are dedicated to assisting Gate Groups that have multiple
 As with Gate Groups, It is recommended to have at least one Spear user in each Flexible Group that can apply three stacks of ![Rend Icon](https://cdn.nwdb.info/db/images/live/v2/status/se_rendt1.png) [Rend](https://nwdb.info/db/status-effect/spear_perforate_rend_upgrade) with ![Perforate Icon](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_perforate.png) [Perforate](https://nwdb.info/db/ability/ability_spear_perforate) and ![Rupturing Strikes Icon](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_perforate_bonusrend.png) [Rupturing Strikes](https://nwdb.info/db/ability/ability_spear_perforate_bonusrend), which significantly decreases the resistances of bosses.
 
 One healer can be assigned to Flexible Groups as well to assist with healing load during difficult and complicated encounters at gates; but some Invasion Leaders prefer to have Flexible Groups only contain damage dealers.
+
+## Siege Groups
+Siege groups use the defensive Fortifications installed and placed by the governing Company of the fort.
+
+[Read more about the different types of Fortifications here.](/fortifications)
