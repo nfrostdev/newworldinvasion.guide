@@ -30,7 +30,7 @@
 
   &__nav {
     @apply grid fixed top-0 right-0 mt-16 text-right bg-nw-darkgray w-full transition-all transform opacity-0 origin-right scale-x-50 pointer-events-none;
-    @apply md:relative md:left-auto md:mt-0;
+    @apply md:relative md:left-auto md:mt-0 md:opacity-100 md:pointer-events-auto md:scale-x-100;
 
     &.shown {
       @apply scale-x-100 opacity-100;

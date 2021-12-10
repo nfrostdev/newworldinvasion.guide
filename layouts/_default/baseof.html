@@ -9,15 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500&family=IM+Fell+DW+Pica&display=swap"
           rel="stylesheet">
 
-    {{ $scss := resources.Get "scss/main.scss" | resources.ToCSS }}
-    {{ $styles := $scss | postCSS }}
-
-    {{ if .Site.IsServer }}
-        <link rel="stylesheet" href="{{ $styles.RelPermalink }}"/>
-    {{ else }}
-        {{ $styles := $styles | minify | fingerprint | resources.PostProcess }}
-        <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}"/>
+    {{ $css := resources.Get "scss/main.scss" | resources.ToCSS | postCSS }}
+    {{ if eq .Site.IsServer false }}
+        {{ $css := $css | fingerprint | minify | resources.PostProcess}}
     {{ end }}
+    <link rel="stylesheet" href="{{ $css.Permalink}}"/>
 </head>
 <body>
 {{ partial "header" . }}
