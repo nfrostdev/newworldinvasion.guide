@@ -7,7 +7,7 @@
         {{ $check := resources.Get "img/check.svg" | minify | fingerprint }}
         {{ range .items }}
             {{ $id := (print .name $title) | urlize }}
-            <label for="{{ $id }}" class="checklist__item" title="{{ .name }} Checkbox">
+            <label for="{{ $id }}" class="checklist__item" title="{{ .name }} [{{ $title}}] Checkbox">
                 <span class="checklist__item__check" aria-hidden="true">
                     {{ $check.Content | safeHTML }}
                 </span>
