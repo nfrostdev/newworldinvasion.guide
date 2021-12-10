@@ -55,7 +55,7 @@
 
     &.checked {
       .checklist__item__check {
-        @apply opacity-100 bg-green-700 text-white;
+        @apply opacity-100 bg-green-700 text-white shadow;
       }
     }
 
