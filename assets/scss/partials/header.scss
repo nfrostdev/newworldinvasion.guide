@@ -33,7 +33,7 @@
     @apply md:relative md:left-auto md:mt-0 md:opacity-100 md:pointer-events-auto md:scale-x-100;
 
     &.shown {
-      @apply scale-x-100 opacity-100;
+      @apply scale-x-100 opacity-100 pointer-events-auto;
     }
 
     &__link {
