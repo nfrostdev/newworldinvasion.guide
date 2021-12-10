@@ -7,21 +7,26 @@
 }
 
 .checklist {
-  @apply grid gap-4 justify-start items-start;
-  @apply md:grid-cols-2;
+  &__group {
+    @apply flex flex-wrap space-x-8 justify-start items-start;
+
+    &--houses {
+      @apply grid gap-4 space-x-0;
+    }
+  }
 
   &__h2 {
     @apply text-2xl mb-2 mt-6;
   }
 
   &__item {
-    @apply relative flex justify-start items-center bg-nw-darkgray p-3 rounded-md leading-tight transition cursor-pointer;
+    @apply relative flex justify-start items-center bg-nw-darkgray p-3 pr-4 rounded-md leading-tight transition cursor-pointer;
 
     &s {
       @apply grid gap-4 justify-start items-start;
     }
 
-    &__info {
+    &__name {
       @apply flex justify-start items-center;
     }
 
@@ -39,6 +44,12 @@
 
     &__img {
       @apply w-12 h-12 mr-3;
+    }
+
+    &__link {
+      @apply absolute w-5 h-5;
+      top: -0.5rem;
+      right: -0.5rem;
     }
 
     &__icon {

@@ -5,6 +5,7 @@
         {{ $damage := resources.Get "img/crit.svg" | minify | fingerprint }}
         {{ $duration := resources.Get "img/duration.svg" | minify | fingerprint }}
         {{ $check := resources.Get "img/check.svg" | minify | fingerprint }}
+        {{ $nwdb := resources.Get "img/nwdb.png" | fingerprint }}
         {{ range .items }}
             {{ $id := (print .name $title) | urlize }}
             <label for="{{ $id }}" class="checklist__item" title="{{ .name }} [{{ $title}}] Checkbox">
@@ -14,9 +15,7 @@
                 <input type="checkbox" id="{{ $id }}" class="checklist__item__input"/>
                 <img src="{{ .image }}" alt="{{ .name }} Icon" class="checklist__item__img"/>
                 <span class="checklist__item__container">
-                    <a class="checklist__item__info" href="{{ .link }}" target="_blank" rel="noopener">
-                        <span>{{ .name }}</span>
-                    </a>
+                    <span class="checklist__item__name">{{ .name }}</span>
                     <span class="checklist__item__stats">
                         <span class="checklist__item__stat">
                         <span class="checklist__item__icon checklist__item__icon--damage" title="Bonus Damage"
@@ -34,6 +33,10 @@
                         </span>
                     </span>
                 </span>
+                <a class="checklist__item__link" href="{{ .link }}"
+                   target="_blank" rel="noopener" title="nwdb.info Link">
+                    <img src="{{ $nwdb.Permalink }}" class="checklist__item__link__nwdb" alt="nwdb.info Icon">
+                </a>
             </label>
         {{ end}}
     </div>
