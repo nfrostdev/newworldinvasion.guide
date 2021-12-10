@@ -10,12 +10,4 @@
 .main {
   @apply p-8;
   @apply md:ml-52;
-
-  a {
-    @apply text-nw-gold transition;
-
-    &:hover, &:focus {
-      @apply text-nw-orange underline;
-    }
-  }
 }

@@ -24,5 +24,17 @@ h3 {
 }
 
 p {
-  @apply font-light mb-2 max-w-md leading-normal;
+  @apply font-light mb-4 max-w-lg leading-normal;
+
+  a {
+    @apply text-nw-orange font-medium;
+
+    &:hover, &:focus {
+      @apply underline;
+    }
+  }
+
+  img {
+    @apply inline-block w-4 h-4 mr-px align-middle;
+  }
 }
