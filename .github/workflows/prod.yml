@@ -19,12 +19,6 @@ jobs:
         run: npm install
       - name: Build
         run: hugo --minify --baseURL="https://newworldinvasion.guide"
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: public
-          path: public
-          retention-days: 1
       - name: Install Firebase Tools
         run: npm install firebase-tools -g
       - name: Deploy to Firebase
