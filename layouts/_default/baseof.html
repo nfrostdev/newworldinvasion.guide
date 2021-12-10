@@ -7,6 +7,7 @@
     {{ else }}
         <title>{{ .Site.Title }}</title>
     {{ end }}
+    <meta name="description" content="{{ .Page.Description }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +16,7 @@
 
     {{ $css := resources.Get "scss/main.scss" | resources.ToCSS | postCSS }}
     {{ if eq .Site.IsServer false }}
-        {{ $css := $css | fingerprint | minify | resources.PostProcess}}
+        {{ $css := $css | fingerprint | minify | resources.PostProcess }}
     {{ end }}
     <link rel="stylesheet" href="{{ $css.Permalink }}"/>
 </head>
