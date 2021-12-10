@@ -7,4 +7,3 @@ description: "Learn more about why and when to use the different siege defensive
 ---
 
 # Fortifications
-Learn more about why and when to use the different siege defensive fortifications.
