@@ -13,6 +13,7 @@
         const MELEE_WEAPONS = ['Great Axe', 'War Hammer', 'Spear', 'Hatchet', 'Rapier'].sort()
         const RANGED_WEAPONS = ['Bow', 'Musket', 'Fire Staff', 'Ice Gauntlet', 'Void Gauntlet', 'Hatchet'].sort()
         const HEALER_WEAPONS = ['Life Staff']
+        const PLANNER_ID = new URLSearchParams(window.location.search).get('id')
 
         class Planner {
             id = ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
@@ -180,7 +181,7 @@
         }
 
         function getCurrentPagePlanner() {
-            return getPlannerFromId(new URLSearchParams(window.location.search).get('id'))
+            return getPlannerFromId(PLANNER_ID)
         }
 
         function savePlanner(planner) {
@@ -227,6 +228,12 @@
                 localStorage.setItem('planners', JSON.stringify(planners))
                 // Redirect to the new planner.
                 window.location.assign('/planner/?id=' + newPlanner.id)
+            }
+
+            // If the user has a planner already set up, go to it.
+            // TODO: Make this more modular, allow the user to have multiple planners.
+            if (!PLANNER_ID) {
+                window.location.assign('/planner/?id=' + planners[0].id)
             }
 
             // Get the planner from the ID.

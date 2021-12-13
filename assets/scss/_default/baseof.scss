@@ -7,6 +7,13 @@ html {
   @apply bg-nw-gray text-white text-nw-lightgray;
 }
 
+*[contenteditable] {
+  @apply outline-none rounded border border-transparent;
+  &:focus {
+    @apply bg-nw-darkgray text-nw-orange border-gray-700;
+  }
+}
+
 h1, h2, h3 {
   font-family: 'IM Fell DW Pica', serif;
 }

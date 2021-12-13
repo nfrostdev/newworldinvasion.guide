@@ -24,10 +24,5 @@
 {{ partial "header" . }}
 <main class="main">{{ block "main" . }}{{ end }}</main>
 {{ partial "footer" . }}
-<script>
-    document.querySelectorAll('h2').forEach(h => {
-        h.innerHTML = h.innerHTML.replace(/(\d)/g, '<span class="number">$1</span>')
-    })
-</script>
 </body>
 </html>
