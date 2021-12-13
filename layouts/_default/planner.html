@@ -29,7 +29,7 @@
         function getRandomWeaponType(role, primaryWeapon) {
             const tankWeapons = ['Sword & Shield']
             const meleeWeapons = ['Great Axe', 'War Hammer', 'Spear', 'Hatchet', 'Rapier']
-            const rangedWeapons = ['Bow', 'Musket', 'Life Staff', 'Fire Staff', 'Ice Gauntlet', 'Void Gauntlet', 'Hatchet']
+            const rangedWeapons = ['Bow', 'Musket', 'Fire Staff', 'Ice Gauntlet', 'Void Gauntlet', 'Hatchet']
             const healerWeapons = ['Life Staff']
             if (primaryWeapon) {
                 switch (role) {
@@ -43,6 +43,8 @@
                         return meleeWeapons[getRandomIndex(meleeWeapons)]
                     case 'Healer':
                         return 'Void Gauntlet'
+                    default:
+                        return rangedWeapons[getRandomIndex(rangedWeapons)]
                 }
             }
 
@@ -61,20 +63,57 @@
         }
 
         for (let i = 0; i < TOTAL_GROUPS; i++) {
+            const groupContainer = document.createElement('div')
+            groupContainer.classList.add('planner__group')
+            // Append the group container.
+            PLANNER.appendChild(groupContainer)
+
             const groupHeader = document.createElement('h2')
-            groupHeader.innerText = 'Group ' + i.toString()
+            groupHeader.innerText = 'Group ' + (i + 1).toString()
+            groupHeader.classList.add('planner__group__header')
+            // Append the group header.
+            groupContainer.appendChild(groupHeader)
+
+            const groupCharacterContainer = document.createElement('div')
+            groupCharacterContainer.classList.add('planner__group__characters')
+            // Append the character container.
+            groupContainer.appendChild(groupCharacterContainer)
 
             for (let c = 0; c < CHARACTERS_PER_GROUP; c++) {
                 const role = getRandomRole()
                 const primaryWeapon = getRandomWeaponType(role)
                 const secondaryWeapon = getRandomWeaponType(role, primaryWeapon)
                 const character = new Character(role, 'Example Character', primaryWeapon, secondaryWeapon)
-                console.log(character)
+
+                const characterContainer = document.createElement('div')
+                characterContainer.classList.add('planner__group__character')
+
+                const characterRole = document.createElement('div')
+                characterRole.innerText = character.role.toString()
+                characterRole.classList.add('planner__group__character__role')
+
+                const characterName = document.createElement('div')
+                characterName.innerText = character.name.toString()
+                characterRole.classList.add('planner__group__character__name')
+
+                const characterPrimaryWeapon = document.createElement('div')
+                characterPrimaryWeapon.innerText = character.primaryWeapon.toString()
+                characterPrimaryWeapon.classList.add('planner__group__character__weapon')
+
+                const characterSecondaryWeapon = document.createElement('div')
+                characterSecondaryWeapon.innerText = character.secondaryWeapon.toString()
+                characterSecondaryWeapon.classList.add('planner__group__character__weapon')
+
+                // Append character information to the character container.
+                characterContainer.appendChild(characterRole)
+                characterContainer.appendChild(characterName)
+                characterContainer.appendChild(characterPrimaryWeapon)
+                characterContainer.appendChild(characterSecondaryWeapon)
+
+                // Append this character to the character container.
+                groupCharacterContainer.appendChild(characterContainer)
             }
 
-            const groupContainer = document.createElement('div')
-            groupContainer.appendChild(groupHeader)
-            PLANNER.appendChild(groupContainer)
         }
     </script>
 {{ end }}
