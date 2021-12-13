@@ -50,6 +50,10 @@
             }
         }
 
+        function trimString(string) {
+            return string.replace(/^\s+|\s+$/g, '')
+        }
+
         function setDocumentTitle(planner) {
             document.title = planner.name + ' | Planner | New World Invasion Guide'
         }
@@ -71,6 +75,7 @@
                 const groupDescription = document.createElement('h3')
                 groupDescription.innerText = group.description
                 groupDescription.classList.add('planner__group__description')
+                groupDescription.contentEditable = 'true'
                 // Append the group description.
                 groupContainer.appendChild(groupDescription)
 
@@ -174,6 +179,10 @@
             return undefined
         }
 
+        function getCurrentPagePlanner() {
+            return getPlannerFromId(new URLSearchParams(window.location.search).get('id'))
+        }
+
         function savePlanner(planner) {
             const planners = getLocalPlanners()
             let localPlanner = planners.find(p => p.id === planner.id)
@@ -184,13 +193,20 @@
         function updatePlannerName(planner) {
             let text = PAGE_HEADER.innerText
             if (text) {
-                text = text.replace(/^\s+|\s+$/g, '')
+                text = trimString(text)
                 planner.name = text
                 savePlanner(planner)
             } else {
                 PAGE_HEADER.innerText = planner.name
             }
             setDocumentTitle(planner)
+        }
+
+        function updateGroupDescription(index, text) {
+            const planner = getCurrentPagePlanner()
+            text = trimString(text)
+            planner.groups[index].description = text
+            savePlanner(planner)
         }
 
         function init() {
@@ -214,7 +230,7 @@
             }
 
             // Get the planner from the ID.
-            const planner = getPlannerFromId(new URLSearchParams(window.location.search).get('id'))
+            const planner = getCurrentPagePlanner()
             renderPlanner(planner)
 
             // Allow the user to edit the planner name.
@@ -227,6 +243,18 @@
             })
             PAGE_HEADER.addEventListener('blur', () => {
                 updatePlannerName(planner)
+            })
+
+            // Allow the user to edit group descriptions.
+            document.querySelectorAll('.planner__group__description').forEach((gd, index) => {
+                gd.addEventListener('keydown', e => {
+                    if (e.code === 'Enter') {
+                        gd.blur()
+                    }
+                })
+                gd.addEventListener('blur', e => {
+                    updateGroupDescription(index, e.target.innerText)
+                })
             })
         }
 
