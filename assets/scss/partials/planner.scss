@@ -1,6 +1,8 @@
 .planner {
-  @apply grid gap-3;
-  @apply lg:grid-cols-5;
+  @apply grid gap-3 max-w-6xl w-full;
+  @apply sm:grid-cols-2;
+  @apply lg:grid-cols-3;
+  @apply xl:grid-cols-5;
 
   &__group {
     @apply bg-nw-darkgray p-3 rounded-md;
