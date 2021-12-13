@@ -1,3 +1,20 @@
 .planner {
-  display: grid;
+  @apply grid gap-4;
+  @apply lg:grid-cols-5;
+
+  &__group {
+    @apply bg-nw-darkgray p-4 rounded;
+
+    &__header {
+      @apply mt-0;
+    }
+
+    &__character {
+      @apply p-2 bg-black bg-opacity-50 rounded leading-none;
+
+      &s {
+        @apply grid gap-2;
+      }
+    }
+  }
 }
