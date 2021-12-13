@@ -36,18 +36,22 @@
 
         class Character {
             constructor(primaryWeapon, secondaryWeapon) {
-                if (TANK_WEAPONS.includes(primaryWeapon) || TANK_WEAPONS.includes(secondaryWeapon)) {
+                this.name = 'Example ' + this.role
+                this.primaryWeapon = WEAPON_TYPES.find(w => w === primaryWeapon)
+                this.secondaryWeapon = WEAPON_TYPES.find(w => w === secondaryWeapon)
+                this.updateRole()
+            }
+
+            updateRole() {
+                if (TANK_WEAPONS.includes(this.primaryWeapon) || TANK_WEAPONS.includes(this.secondaryWeapon)) {
                     this.role = 'Tank'
-                } else if (HEALER_WEAPONS.includes(primaryWeapon) || HEALER_WEAPONS.includes(secondaryWeapon)) {
+                } else if (HEALER_WEAPONS.includes(this.primaryWeapon) || HEALER_WEAPONS.includes(this.secondaryWeapon)) {
                     this.role = 'Healer'
-                } else if (RANGED_WEAPONS.includes(primaryWeapon) || RANGED_WEAPONS.includes(secondaryWeapon)) {
+                } else if (RANGED_WEAPONS.includes(this.primaryWeapon) || RANGED_WEAPONS.includes(this.secondaryWeapon)) {
                     this.role = 'Ranged DPS'
                 } else {
                     this.role = 'Melee DPS'
                 }
-                this.name = 'Example ' + this.role
-                this.primaryWeapon = WEAPON_TYPES.find(w => w === primaryWeapon)
-                this.secondaryWeapon = WEAPON_TYPES.find(w => w === secondaryWeapon)
             }
         }
 
