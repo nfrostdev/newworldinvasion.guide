@@ -6,11 +6,11 @@
         const TOTAL_GROUPS = 10
         const CHARACTERS_PER_GROUP = 5
         const PLANNER = document.querySelector('.planner')
-        const ROLES = ["Melee DPS", "Ranged DPS", "Mixed DPS", "Tank", "Healer"].sort()
+        const ROLES = ["Melee DPS", "Ranged DPS", "Tank", "Healer"].sort()
         const WEAPON_TYPES = ["Sword & Shield", 'Bow', 'Great Axe', 'War Hammer', 'Musket', 'Spear', 'Hatchet', 'Rapier', 'Life Staff', 'Fire Staff', 'Ice Gauntlet', 'Void Gauntlet'].sort()
         const TANK_WEAPONS = ['Sword & Shield']
-        const MELEE_WEAPONS = ['Great Axe', 'War Hammer', 'Spear', 'Hatchet', 'Rapier']
-        const RANGED_WEAPONS = ['Bow', 'Musket', 'Fire Staff', 'Ice Gauntlet', 'Void Gauntlet', 'Hatchet']
+        const MELEE_WEAPONS = ['Great Axe', 'War Hammer', 'Spear', 'Hatchet', 'Rapier'].sort()
+        const RANGED_WEAPONS = ['Bow', 'Musket', 'Fire Staff', 'Ice Gauntlet', 'Void Gauntlet', 'Hatchet'].sort()
         const HEALER_WEAPONS = ['Life Staff']
 
         class Character {
@@ -28,6 +28,10 @@
                 this.primaryWeapon = WEAPON_TYPES.find(w => w === primaryWeapon)
                 this.secondaryWeapon = WEAPON_TYPES.find(w => w === secondaryWeapon)
             }
+        }
+
+        function init () {
+            localStorage.getItem('')
         }
 
         function getRandomRole() {
@@ -80,7 +84,7 @@
                         break
                     case 'Melee DPS':
                         characterContainer.classList.add('planner__group__character--melee')
-                        characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/greataxe_ability4_judgementsreach.png'
+                        characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/hatchetability4.png'
                         characterRole.alt = 'Melee DPS Icon'
                         characterRole.classList.add('planner__group__character__role--melee')
                         break
@@ -92,7 +96,7 @@
                         break
                     default:
                         characterContainer.classList.add('planner__group__character--ranged')
-                        characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/perks/engineermastery1.png'
+                        characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/bowability2.png'
                         characterRole.alt = 'Ranged DPS Icon'
                         characterRole.classList.add('planner__group__character__role--ranged')
                 }

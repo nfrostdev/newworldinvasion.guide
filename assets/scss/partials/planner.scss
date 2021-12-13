@@ -1,12 +1,12 @@
 .planner {
-  @apply grid gap-4;
+  @apply grid gap-3;
   @apply lg:grid-cols-5;
 
   &__group {
-    @apply bg-nw-darkgray p-4 rounded;
+    @apply bg-nw-darkgray p-3 rounded-md;
 
     &__header {
-      @apply mt-0;
+      @apply mt-0 text-center text-xl;
     }
 
     &__character {
@@ -21,7 +21,7 @@
       }
 
       &__role {
-        @apply absolute rounded-full w-6 h-6 p-1 bg-gradient-to-br shadow from-gray-700 to-gray-800;
+        @apply absolute rounded-full w-6 h-6 p-1 bg-gradient-to-br shadow from-gray-800 to-nw-darkgray;
         right: -0.75rem;
       }
 
@@ -34,7 +34,7 @@
       }
 
       &--melee {
-        @apply from-indigo-800 to-indigo-900;
+        @apply from-yellow-800 to-yellow-900;
       }
 
       &--healer {
