@@ -17,7 +17,7 @@
       }
 
       &__name {
-        @apply font-bold;
+        @apply font-bold mb-1;
       }
 
       &__role {
@@ -38,7 +38,15 @@
       }
 
       &--healer {
-        @apply from-green-700 to-green-900;
+        @apply from-green-800 to-green-900;
+      }
+
+      &__weapon {
+        @apply bg-transparent appearance-none text-xs;
+
+        &s {
+          @apply grid grid-cols-2 gap-2;
+        }
       }
     }
   }

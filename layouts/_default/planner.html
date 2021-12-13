@@ -8,6 +8,10 @@
         const PLANNER = document.querySelector('.planner')
         const ROLES = ["Melee DPS", "Ranged DPS", "Mixed DPS", "Tank", "Healer"].sort()
         const WEAPON_TYPES = ["Sword & Shield", 'Bow', 'Great Axe', 'War Hammer', 'Musket', 'Spear', 'Hatchet', 'Rapier', 'Life Staff', 'Fire Staff', 'Ice Gauntlet', 'Void Gauntlet'].sort()
+        const TANK_WEAPONS = ['Sword & Shield']
+        const MELEE_WEAPONS = ['Great Axe', 'War Hammer', 'Spear', 'Hatchet', 'Rapier']
+        const RANGED_WEAPONS = ['Bow', 'Musket', 'Fire Staff', 'Ice Gauntlet', 'Void Gauntlet', 'Hatchet']
+        const HEALER_WEAPONS = ['Life Staff']
 
         class Character {
             constructor(role, name, primaryWeapon, secondaryWeapon) {
@@ -27,38 +31,34 @@
         }
 
         function getRandomWeaponType(role, primaryWeapon) {
-            const tankWeapons = ['Sword & Shield']
-            const meleeWeapons = ['Great Axe', 'War Hammer', 'Spear', 'Hatchet', 'Rapier']
-            const rangedWeapons = ['Bow', 'Musket', 'Fire Staff', 'Ice Gauntlet', 'Void Gauntlet', 'Hatchet']
-            const healerWeapons = ['Life Staff']
             if (primaryWeapon) {
                 switch (role) {
                     case 'Mixed DPS':
-                        if (meleeWeapons.includes(primaryWeapon)) {
-                            return rangedWeapons[getRandomIndex(rangedWeapons)]
+                        if (MELEE_WEAPONS.includes(primaryWeapon)) {
+                            return RANGED_WEAPONS[getRandomIndex(RANGED_WEAPONS)]
                         } else {
-                            return meleeWeapons[getRandomIndex(meleeWeapons)]
+                            return MELEE_WEAPONS[getRandomIndex(MELEE_WEAPONS)]
                         }
                     case 'Tank':
-                        return meleeWeapons[getRandomIndex(meleeWeapons)]
+                        return MELEE_WEAPONS[getRandomIndex(MELEE_WEAPONS)]
                     case 'Healer':
                         return 'Void Gauntlet'
                     default:
-                        return rangedWeapons[getRandomIndex(rangedWeapons)]
+                        return RANGED_WEAPONS[getRandomIndex(RANGED_WEAPONS)]
                 }
             }
 
             switch (role) {
                 case 'Tank':
-                    return tankWeapons[getRandomIndex(tankWeapons)]
+                    return TANK_WEAPONS[getRandomIndex(TANK_WEAPONS)]
                 case 'Melee DPS':
-                    return meleeWeapons[getRandomIndex(meleeWeapons)]
+                    return MELEE_WEAPONS[getRandomIndex(MELEE_WEAPONS)]
                 case 'Ranged DPS':
-                    return rangedWeapons[getRandomIndex(rangedWeapons)]
+                    return RANGED_WEAPONS[getRandomIndex(RANGED_WEAPONS)]
                 case 'Mixed DPS':
-                    return meleeWeapons[getRandomIndex(meleeWeapons)]
+                    return MELEE_WEAPONS[getRandomIndex(MELEE_WEAPONS)]
                 case 'Healer':
-                    return healerWeapons[getRandomIndex(healerWeapons)]
+                    return HEALER_WEAPONS[getRandomIndex(HEALER_WEAPONS)]
             }
         }
 
@@ -80,6 +80,7 @@
             groupContainer.appendChild(groupCharacterContainer)
 
             for (let c = 0; c < CHARACTERS_PER_GROUP; c++) {
+                // TODO: Determine role by weapons.
                 const role = getRandomRole()
                 const primaryWeapon = getRandomWeaponType(role)
                 const secondaryWeapon = getRandomWeaponType(role, primaryWeapon)
@@ -121,19 +122,43 @@
                 characterName.innerText = character.name.toString()
                 characterName.classList.add('planner__group__character__name')
 
-                const characterPrimaryWeapon = document.createElement('div')
+                const characterWeapons = document.createElement('div')
+                characterWeapons.classList.add('planner__group__character__weapons')
+
+                const characterPrimaryWeapon = document.createElement('select')
                 characterPrimaryWeapon.innerText = character.primaryWeapon.toString()
                 characterPrimaryWeapon.classList.add('planner__group__character__weapon')
 
-                const characterSecondaryWeapon = document.createElement('div')
+                const characterSecondaryWeapon = document.createElement('select')
                 characterSecondaryWeapon.innerText = character.secondaryWeapon.toString()
                 characterSecondaryWeapon.classList.add('planner__group__character__weapon')
+
+                WEAPON_TYPES.forEach(wt => {
+                    const primaryEl = document.createElement('option')
+                    primaryEl.value = wt
+                    primaryEl.innerText = wt
+                    characterPrimaryWeapon.appendChild(primaryEl)
+
+                    if (wt === character.primaryWeapon) {
+                        primaryEl.selected = true
+                    }
+
+                    const secondaryEl = document.createElement('option')
+                    secondaryEl.value = wt
+                    secondaryEl.innerText = wt
+                    characterSecondaryWeapon.appendChild(secondaryEl)
+
+                    if (wt === character.secondaryWeapon) {
+                        secondaryEl.selected = true
+                    }
+                })
 
                 // Append character information to the character container.
                 characterContainer.appendChild(characterRole)
                 characterContainer.appendChild(characterName)
-                characterContainer.appendChild(characterPrimaryWeapon)
-                characterContainer.appendChild(characterSecondaryWeapon)
+                characterContainer.appendChild(characterWeapons)
+                characterWeapons.appendChild(characterPrimaryWeapon)
+                characterWeapons.appendChild(characterSecondaryWeapon)
 
                 // Append this character to the character container.
                 groupCharacterContainer.appendChild(characterContainer)
