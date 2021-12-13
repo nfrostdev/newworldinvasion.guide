@@ -170,36 +170,43 @@
             let localPlanner = planners.find(p => p.id === planner.id)
             planners[planners.indexOf(localPlanner)] = planner
             localStorage.setItem('planners', JSON.stringify(planners))
-            console.log(localStorage.getItem('planners'))
         }
 
-        function updatePlannerName(planner) {
-            console.log(PAGE_HEADER.innerText)
-            planner.name = PAGE_HEADER.innerText
+        function updatePlannerName() {
+            const planner = getLocalPlanners()
+            // TODO: Proper reference to multiple stored planners.
+            planner[0].name = PAGE_HEADER.innerText
+            console.log(planner[0].name)
             savePlanner(planner)
         }
 
         function init() {
-            const planners = []
-            // Initialize a new planner of one isn't found yet.
-            const planner = new Planner('My Example Invasion Plan')
-            for (let i = 0; i < TOTAL_GROUPS; i++) {
-                const group = new Group('Group ' + (i + 1).toString() + ' Description')
-                for (let c = 0; c < CHARACTERS_PER_GROUP; c++) {
-                    group.characters.push(new Character('Great Axe', 'War Hammer'))
+            const planners = getLocalPlanners()
+            if (planners && planners.length) {
+                const planner = planners[0]
+                renderPlanner(planner)
+            } else {
+                const planners = []
+                // Initialize a new planner of one isn't found yet.
+                const planner = new Planner('My Example Invasion Plan')
+                for (let i = 0; i < TOTAL_GROUPS; i++) {
+                    const group = new Group('Group ' + (i + 1).toString() + ' Description')
+                    for (let c = 0; c < CHARACTERS_PER_GROUP; c++) {
+                        group.characters.push(new Character('Great Axe', 'War Hammer'))
+                    }
+                    planner.groups.push(group)
                 }
-                planner.groups.push(group)
+                planners.push(planner)
+
+                localStorage.setItem('planners', JSON.stringify(planners))
+                renderPlanner(planner)
             }
-            planners.push(planner)
 
-            localStorage.setItem('planners', JSON.stringify(planners))
-
+            // Allow the user to edit the planner name.
             PAGE_HEADER.contentEditable = 'true'
             PAGE_HEADER.addEventListener('input', () => {
-                updatePlannerName(planner)
+                updatePlannerName()
             })
-
-            renderPlanner(planner)
         }
 
         init()
