@@ -18,6 +18,10 @@
                 (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
             )
             groups = []
+
+            constructor(name) {
+                this.name = name
+            }
         }
 
         class Group {
@@ -46,6 +50,8 @@
         }
 
         function renderPlanner(planner) {
+            document.querySelector('h1').innerText = planner.name
+            document.title = planner.name + ' | Planner | New World Invasion Guide'
             planner.groups.forEach((group, groupIndex) => {
                 const groupContainer = document.createElement('div')
                 groupContainer.classList.add('planner__group')
@@ -149,7 +155,7 @@
         function init() {
             const planners = []
             // Initialize a new planner of one isn't found yet.
-            const planner = new Planner
+            const planner = new Planner('My Example Invasion Plan')
             for (let i = 0; i < TOTAL_GROUPS; i++) {
                 const group = new Group('Group ' + (i + 1).toString() + ' Description')
                 for (let c = 0; c < CHARACTERS_PER_GROUP; c++) {
