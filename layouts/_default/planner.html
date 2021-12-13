@@ -13,6 +13,21 @@
         const RANGED_WEAPONS = ['Bow', 'Musket', 'Fire Staff', 'Ice Gauntlet', 'Void Gauntlet', 'Hatchet'].sort()
         const HEALER_WEAPONS = ['Life Staff']
 
+        class Planner {
+            id = ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+            )
+            groups = []
+        }
+
+        class Group {
+            characters = []
+
+            constructor(description) {
+                this.description = description
+            }
+        }
+
         class Character {
             constructor(primaryWeapon, secondaryWeapon) {
                 if (TANK_WEAPONS.includes(primaryWeapon) || TANK_WEAPONS.includes(secondaryWeapon)) {
@@ -30,124 +45,126 @@
             }
         }
 
-        function init() {
-            localStorage.getItem('')
-        }
+        function renderPlanner(planner) {
+            planner.groups.forEach((group, groupIndex) => {
+                const groupContainer = document.createElement('div')
+                groupContainer.classList.add('planner__group')
+                // Append the group container.
+                PLANNER.appendChild(groupContainer)
 
-        function getRandomRole() {
-            return ROLES[Math.floor(Math.random() * ROLES.length)]
-        }
+                const groupHeader = document.createElement('h2')
+                groupHeader.innerText = 'Group ' + (groupIndex + 1).toString()
+                groupHeader.classList.add('planner__group__header')
+                // Append the group header.
+                groupContainer.appendChild(groupHeader)
 
-        function getRandomIndex(array) {
-            return Math.floor(Math.random() * array.length)
-        }
+                const groupCharacterContainer = document.createElement('div')
+                groupCharacterContainer.classList.add('planner__group__characters')
+                // Append the character container.
+                groupContainer.appendChild(groupCharacterContainer)
 
-        function getRandomWeaponType(primaryWeapon) {
-            const filteredWeapons = WEAPON_TYPES.filter(wt => wt !== primaryWeapon)
-            return filteredWeapons[getRandomIndex(filteredWeapons)]
-        }
+                group.characters.forEach(character => {
+                    const characterContainer = document.createElement('div')
+                    characterContainer.classList.add('planner__group__character')
 
-        for (let i = 0; i < TOTAL_GROUPS; i++) {
-            const groupContainer = document.createElement('div')
-            groupContainer.classList.add('planner__group')
-            // Append the group container.
-            PLANNER.appendChild(groupContainer)
+                    const characterRole = document.createElement('img')
+                    characterRole.classList.add('planner__group__character__role')
 
-            const groupHeader = document.createElement('h2')
-            groupHeader.innerText = 'Group ' + (i + 1).toString()
-            groupHeader.classList.add('planner__group__header')
-            // Append the group header.
-            groupContainer.appendChild(groupHeader)
-
-            const groupCharacterContainer = document.createElement('div')
-            groupCharacterContainer.classList.add('planner__group__characters')
-            // Append the character container.
-            groupContainer.appendChild(groupCharacterContainer)
-
-            for (let c = 0; c < CHARACTERS_PER_GROUP; c++) {
-                const primaryWeapon = getRandomWeaponType()
-                const secondaryWeapon = getRandomWeaponType(primaryWeapon)
-                const character = new Character(primaryWeapon, secondaryWeapon)
-
-                const characterContainer = document.createElement('div')
-                characterContainer.classList.add('planner__group__character')
-
-                const characterRole = document.createElement('img')
-                characterRole.classList.add('planner__group__character__role')
-
-                switch (character.role) {
-                    case 'Tank':
-                        characterContainer.classList.add('planner__group__character--tank')
-                        characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/swordability6.png'
-                        characterRole.classList.add('planner__group__character__role--tank')
-                        break
-                    case 'Melee DPS':
-                        characterContainer.classList.add('planner__group__character--melee')
-                        characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/hatchetability4.png'
-                        characterRole.classList.add('planner__group__character__role--melee')
-                        break
-                    case 'Healer':
-                        characterContainer.classList.add('planner__group__character--healer')
-                        characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/lifestaffability3.png'
-                        characterRole.classList.add('planner__group__character__role--healer')
-                        break
-                    default:
-                        characterContainer.classList.add('planner__group__character--ranged')
-                        characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/bowability2.png'
-                        characterRole.alt = 'Ranged DPS'
-                        characterRole.classList.add('planner__group__character__role--ranged')
-                }
-                characterRole.alt = character.role
-                characterRole.title = character.role
-
-                const characterNameRole = document.createElement('div')
-                characterNameRole.classList.add('planner__group__character__name')
-
-                const characterName = document.createElement('div')
-                characterName.innerText = character.name.toString()
-
-                const characterWeapons = document.createElement('div')
-                characterWeapons.classList.add('planner__group__character__weapons')
-
-                const characterPrimaryWeapon = document.createElement('select')
-                characterPrimaryWeapon.innerText = character.primaryWeapon.toString()
-                characterPrimaryWeapon.classList.add('planner__group__character__weapon')
-
-                const characterSecondaryWeapon = document.createElement('select')
-                characterSecondaryWeapon.innerText = character.secondaryWeapon.toString()
-                characterSecondaryWeapon.classList.add('planner__group__character__weapon')
-
-                WEAPON_TYPES.forEach(wt => {
-                    const primaryEl = document.createElement('option')
-                    primaryEl.value = wt
-                    primaryEl.innerText = wt
-                    characterPrimaryWeapon.appendChild(primaryEl)
-
-                    if (wt === character.primaryWeapon) {
-                        primaryEl.selected = true
+                    switch (character.role) {
+                        case 'Tank':
+                            characterContainer.classList.add('planner__group__character--tank')
+                            characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/swordability6.png'
+                            characterRole.classList.add('planner__group__character__role--tank')
+                            break
+                        case 'Melee DPS':
+                            characterContainer.classList.add('planner__group__character--melee')
+                            characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/hatchetability4.png'
+                            characterRole.classList.add('planner__group__character__role--melee')
+                            break
+                        case 'Healer':
+                            characterContainer.classList.add('planner__group__character--healer')
+                            characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/lifestaffability3.png'
+                            characterRole.classList.add('planner__group__character__role--healer')
+                            break
+                        default:
+                            characterContainer.classList.add('planner__group__character--ranged')
+                            characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/bowability2.png'
+                            characterRole.alt = 'Ranged DPS'
+                            characterRole.classList.add('planner__group__character__role--ranged')
                     }
+                    characterRole.alt = character.role
+                    characterRole.title = character.role
 
-                    const secondaryEl = document.createElement('option')
-                    secondaryEl.value = wt
-                    secondaryEl.innerText = wt
-                    characterSecondaryWeapon.appendChild(secondaryEl)
+                    const characterNameRole = document.createElement('div')
+                    characterNameRole.classList.add('planner__group__character__name')
 
-                    if (wt === character.secondaryWeapon) {
-                        secondaryEl.selected = true
-                    }
+                    const characterName = document.createElement('div')
+                    characterName.innerText = character.name.toString()
+
+                    const characterWeapons = document.createElement('div')
+                    characterWeapons.classList.add('planner__group__character__weapons')
+
+                    const characterPrimaryWeapon = document.createElement('select')
+                    characterPrimaryWeapon.innerText = character.primaryWeapon.toString()
+                    characterPrimaryWeapon.classList.add('planner__group__character__weapon')
+
+                    const characterSecondaryWeapon = document.createElement('select')
+                    characterSecondaryWeapon.innerText = character.secondaryWeapon.toString()
+                    characterSecondaryWeapon.classList.add('planner__group__character__weapon')
+
+                    WEAPON_TYPES.forEach(wt => {
+                        const primaryEl = document.createElement('option')
+                        primaryEl.value = wt
+                        primaryEl.innerText = wt
+                        characterPrimaryWeapon.appendChild(primaryEl)
+
+                        if (wt === character.primaryWeapon) {
+                            primaryEl.selected = true
+                        }
+
+                        const secondaryEl = document.createElement('option')
+                        secondaryEl.value = wt
+                        secondaryEl.innerText = wt
+                        characterSecondaryWeapon.appendChild(secondaryEl)
+
+                        if (wt === character.secondaryWeapon) {
+                            secondaryEl.selected = true
+                        }
+                    })
+
+                    // Append character information to the character container.
+                    characterContainer.appendChild(characterNameRole)
+                    characterNameRole.appendChild(characterRole)
+                    characterNameRole.appendChild(characterName)
+                    characterContainer.appendChild(characterWeapons)
+                    characterWeapons.appendChild(characterPrimaryWeapon)
+                    characterWeapons.appendChild(characterSecondaryWeapon)
+
+                    // Append this character to the character container.
+                    groupCharacterContainer.appendChild(characterContainer)
                 })
-
-                // Append character information to the character container.
-                characterContainer.appendChild(characterNameRole)
-                characterNameRole.appendChild(characterRole)
-                characterNameRole.appendChild(characterName)
-                characterContainer.appendChild(characterWeapons)
-                characterWeapons.appendChild(characterPrimaryWeapon)
-                characterWeapons.appendChild(characterSecondaryWeapon)
-
-                // Append this character to the character container.
-                groupCharacterContainer.appendChild(characterContainer)
-            }
+            })
         }
+
+        function init() {
+            const planners = []
+            // Initialize a new planner of one isn't found yet.
+            const planner = new Planner
+            for (let i = 0; i < TOTAL_GROUPS; i++) {
+                const group = new Group('Group ' + (i + 1).toString() + ' Description')
+                for (let c = 0; c < CHARACTERS_PER_GROUP; c++) {
+                    group.characters.push(new Character('Great Axe', 'War Hammer'))
+                }
+                planner.groups.push(group)
+            }
+            planners.push(planner)
+
+            localStorage.setItem('planners', JSON.stringify(planners))
+            console.log(localStorage.getItem('planners'))
+
+            renderPlanner(planner)
+        }
+
+        init()
     </script>
 {{ end }}
