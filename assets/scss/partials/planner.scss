@@ -6,7 +6,12 @@
     @apply bg-nw-darkgray p-3 rounded-md;
 
     &__header {
-      @apply mt-0 text-center text-xl;
+      @apply mt-0 text-center text-xl mb-0;
+    }
+
+    &__description {
+      font-family: "Assistant", sans-serif;
+      @apply text-center text-base font-light mt-0 mb-2;
     }
 
     &__character {

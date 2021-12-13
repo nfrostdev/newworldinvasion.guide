@@ -7,4 +7,3 @@ description: "Plan your Army composition for New World Invasions."
 ---
 
 # Planner
-Work in progress.

@@ -68,6 +68,12 @@
                 // Append the group header.
                 groupContainer.appendChild(groupHeader)
 
+                const groupDescription = document.createElement('h3')
+                groupDescription.innerText = group.description
+                groupDescription.classList.add('planner__group__description')
+                // Append the group description.
+                groupContainer.appendChild(groupDescription)
+
                 const groupCharacterContainer = document.createElement('div')
                 groupCharacterContainer.classList.add('planner__group__characters')
                 // Append the character container.
