@@ -3,9 +3,21 @@
 
     <div class="planner"></div>
     <script>
-        const GROUP_COUNT = 10
+        const TOTAL_GROUPS = 10
         const PLANNER = document.querySelector('.planner')
-        for (let i = 0; i < GROUP_COUNT; i++) {
+        const ROLES = ["Melee DPS", "Ranged DPS", "Mixed DPS", "Tank", "Healer"].sort()
+        const WEAPON_TYPES = ["Sword & Shield", 'Bow', 'Great Axe', 'War Hammer', 'Musket', 'Spear', 'Hatchet', 'Rapier', 'Life Staff', 'Fire Staff', 'Icy Gauntlet', 'Void Gauntlet'].sort()
+
+        class Character {
+            constructor(role, name, primaryWeapon, secondaryWeapon) {
+                this.role = role
+                this.name = name
+                this.primaryWeapon = primaryWeapon
+                this.secondaryWeapon = secondaryWeapon
+            }
+        }
+
+        for (let i = 0; i < TOTAL_GROUPS; i++) {
             const groupContainer = document.createElement('div')
             const groupHeader = document.createElement('h2')
             groupHeader.innerText = 'Group ' + i.toString()
