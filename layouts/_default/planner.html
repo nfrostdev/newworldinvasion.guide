@@ -1,0 +1,17 @@
+{{ define "main" }}
+    {{ .Content }}
+
+    <div class="planner"></div>
+    <script>
+        const GROUP_COUNT = 10
+        const PLANNER = document.querySelector('.planner')
+        for (let i = 0; i < GROUP_COUNT; i++) {
+            const groupContainer = document.createElement('div')
+            const groupHeader = document.createElement('h2')
+            groupHeader.innerText = 'Group ' + i.toString()
+
+            groupContainer.appendChild(groupHeader)
+            PLANNER.appendChild(groupContainer)
+        }
+    </script>
+{{ end }}
