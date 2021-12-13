@@ -50,9 +50,12 @@
             }
         }
 
+        function setDocumentTitle(planner) {
+            document.title = planner.name + ' | Planner | New World Invasion Guide'
+        }
+
         function renderPlanner(planner) {
             PAGE_HEADER.innerText = planner.name
-            document.title = planner.name + ' | Planner | New World Invasion Guide'
             planner.groups.forEach((group, groupIndex) => {
                 const groupContainer = document.createElement('div')
                 groupContainer.classList.add('planner__group')
@@ -172,40 +175,52 @@
             localStorage.setItem('planners', JSON.stringify(planners))
         }
 
-        function updatePlannerName() {
-            const planner = getLocalPlanners()
-            // TODO: Proper reference to multiple stored planners.
-            planner[0].name = PAGE_HEADER.innerText
-            console.log(planner[0].name)
-            savePlanner(planner)
+        function updatePlannerName(planner) {
+            let text = PAGE_HEADER.innerText
+            if (text) {
+                text = text.replace(/^\s+|\s+$/g, '')
+                planner.name = text
+                savePlanner(planner)
+            } else {
+                PAGE_HEADER.innerText = planner.name
+            }
+            setDocumentTitle(planner)
         }
 
         function init() {
             const planners = getLocalPlanners()
-            if (planners && planners.length) {
-                const planner = planners[0]
-                renderPlanner(planner)
-            } else {
+            console.log(planners)
+            if (!planners || !planners.length) {
                 const planners = []
                 // Initialize a new planner of one isn't found yet.
-                const planner = new Planner('My Example Invasion Plan')
+                const newPlanner = new Planner('My Example Invasion Planner')
                 for (let i = 0; i < TOTAL_GROUPS; i++) {
                     const group = new Group('Group ' + (i + 1).toString() + ' Description')
                     for (let c = 0; c < CHARACTERS_PER_GROUP; c++) {
-                        group.characters.push(new Character('Great Axe', 'War Hammer'))
+                        group.characters.push(new Character('Spear', 'Bow'))
                     }
-                    planner.groups.push(group)
+                    newPlanner.groups.push(group)
                 }
-                planners.push(planner)
-
+                planners.push(newPlanner)
                 localStorage.setItem('planners', JSON.stringify(planners))
-                renderPlanner(planner)
+                // Redirect to the new planner.
+                window.location.assign('/planner/?id=' + newPlanner.id)
             }
+
+            // Get the planner from the ID.
+            const planner = getPlannerFromId(new URLSearchParams(window.location.search).get('id'))
+            renderPlanner(planner)
 
             // Allow the user to edit the planner name.
             PAGE_HEADER.contentEditable = 'true'
-            PAGE_HEADER.addEventListener('input', () => {
-                updatePlannerName()
+            PAGE_HEADER.spellcheck = false
+            PAGE_HEADER.addEventListener('keydown', e => {
+                if (e.code === 'Enter') {
+                    PAGE_HEADER.blur()
+                }
+            })
+            PAGE_HEADER.addEventListener('blur', () => {
+                updatePlannerName(planner)
             })
         }
 
