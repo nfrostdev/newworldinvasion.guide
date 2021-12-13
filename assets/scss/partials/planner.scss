@@ -10,10 +10,35 @@
     }
 
     &__character {
-      @apply p-2 bg-black bg-opacity-50 rounded leading-none;
+      @apply relative p-2 rounded leading-none bg-gradient-to-br shadow;
 
       &s {
         @apply grid gap-2;
+      }
+
+      &__name {
+        @apply font-bold;
+      }
+
+      &__role {
+        @apply absolute rounded-full w-6 h-6 p-1 bg-gradient-to-br shadow from-gray-700 to-gray-800;
+        right: -0.75rem;
+      }
+
+      &--tank {
+        @apply from-gray-800 to-gray-900;
+      }
+
+      &--ranged {
+        @apply from-indigo-800 to-indigo-900;
+      }
+
+      &--melee {
+        @apply from-indigo-800 to-indigo-900;
+      }
+
+      &--healer {
+        @apply from-green-700 to-green-900;
       }
     }
   }

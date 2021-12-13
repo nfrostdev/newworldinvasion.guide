@@ -88,13 +88,38 @@
                 const characterContainer = document.createElement('div')
                 characterContainer.classList.add('planner__group__character')
 
-                const characterRole = document.createElement('div')
-                characterRole.innerText = character.role.toString()
+                const characterRole = document.createElement('img')
                 characterRole.classList.add('planner__group__character__role')
+
+                switch (character.role) {
+                    case 'Tank':
+                        characterContainer.classList.add('planner__group__character--tank')
+                        characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/swordability6.png'
+                        characterRole.alt = 'Tank Icon'
+                        characterRole.classList.add('planner__group__character__role--tank')
+                        break
+                    case 'Melee DPS':
+                        characterContainer.classList.add('planner__group__character--melee')
+                        characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/greataxe_ability4_judgementsreach.png'
+                        characterRole.alt = 'Melee DPS Icon'
+                        characterRole.classList.add('planner__group__character__role--melee')
+                        break
+                    case 'Healer':
+                        characterContainer.classList.add('planner__group__character--healer')
+                        characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/lifestaffability3.png'
+                        characterRole.alt = 'Healer Icon'
+                        characterRole.classList.add('planner__group__character__role--healer')
+                        break
+                    default:
+                        characterContainer.classList.add('planner__group__character--ranged')
+                        characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/perks/engineermastery1.png'
+                        characterRole.alt = 'Ranged DPS Icon'
+                        characterRole.classList.add('planner__group__character__role--ranged')
+                }
 
                 const characterName = document.createElement('div')
                 characterName.innerText = character.name.toString()
-                characterRole.classList.add('planner__group__character__name')
+                characterName.classList.add('planner__group__character__name')
 
                 const characterPrimaryWeapon = document.createElement('div')
                 characterPrimaryWeapon.innerText = character.primaryWeapon.toString()
