@@ -11,7 +11,7 @@
         const WEAPON_TYPES = ["Sword & Shield", 'Bow', 'Great Axe', 'War Hammer', 'Musket', 'Spear', 'Hatchet', 'Rapier', 'Life Staff', 'Fire Staff', 'Ice Gauntlet', 'Void Gauntlet'].sort()
         const TANK_WEAPONS = ['Sword & Shield']
         const MELEE_WEAPONS = ['Great Axe', 'War Hammer', 'Spear', 'Hatchet', 'Rapier'].sort()
-        const RANGED_WEAPONS = ['Bow', 'Musket', 'Fire Staff', 'Ice Gauntlet', 'Void Gauntlet', 'Hatchet'].sort()
+        const RANGED_WEAPONS = ['Bow', 'Musket', 'Fire Staff', 'Ice Gauntlet', 'Void Gauntlet'].sort()
         const HEALER_WEAPONS = ['Life Staff']
         const PLANNER_ID = new URLSearchParams(window.location.search).get('id')
 
@@ -39,19 +39,19 @@
                 this.name = 'Example ' + this.role
                 this.primaryWeapon = WEAPON_TYPES.find(w => w === primaryWeapon)
                 this.secondaryWeapon = WEAPON_TYPES.find(w => w === secondaryWeapon)
-                this.updateRole()
+                getCharacterRole(this.primaryWeapon, this.secondaryWeapon)
             }
+        }
 
-            updateRole() {
-                if (TANK_WEAPONS.includes(this.primaryWeapon) || TANK_WEAPONS.includes(this.secondaryWeapon)) {
-                    this.role = 'Tank'
-                } else if (HEALER_WEAPONS.includes(this.primaryWeapon) || HEALER_WEAPONS.includes(this.secondaryWeapon)) {
-                    this.role = 'Healer'
-                } else if (RANGED_WEAPONS.includes(this.primaryWeapon) || RANGED_WEAPONS.includes(this.secondaryWeapon)) {
-                    this.role = 'Ranged DPS'
-                } else {
-                    this.role = 'Melee DPS'
-                }
+        function getCharacterRole(primaryWeapon, secondaryWeapon) {
+            if (TANK_WEAPONS.includes(primaryWeapon) || TANK_WEAPONS.includes(secondaryWeapon)) {
+                return 'Tank'
+            } else if (HEALER_WEAPONS.includes(primaryWeapon) || HEALER_WEAPONS.includes(secondaryWeapon)) {
+                return 'Healer'
+            } else if (RANGED_WEAPONS.includes(primaryWeapon) || RANGED_WEAPONS.includes(secondaryWeapon)) {
+                return 'Ranged DPS'
+            } else {
+                return 'Melee DPS'
             }
         }
 
@@ -193,6 +193,7 @@
             let localPlanner = planners.find(p => p.id === planner.id)
             planners[planners.indexOf(localPlanner)] = planner
             localStorage.setItem('planners', JSON.stringify(planners))
+            window.location.reload()
         }
 
         function updatePlannerName(planner) {
@@ -211,6 +212,15 @@
             const planner = getCurrentPagePlanner()
             text = trimString(text)
             planner.groups[index].description = text
+            savePlanner(planner)
+        }
+
+        function updateCharacterWeapon(groupIndex, characterIndex, slot, weapon) {
+            const planner = getCurrentPagePlanner()
+            const character = planner.groups[groupIndex].characters[characterIndex]
+            character[slot] = weapon
+            character.role = getCharacterRole(character.primaryWeapon, character.secondaryWeapon)
+            planner.groups[groupIndex].characters[characterIndex] = character
             savePlanner(planner)
         }
 
@@ -256,15 +266,28 @@
                 updatePlannerName(planner)
             })
 
-            // Allow the user to edit group descriptions.
-            document.querySelectorAll('.planner__group__description').forEach((gd, index) => {
-                gd.addEventListener('keydown', e => {
-                    if (e.code === 'Enter') {
-                        gd.blur()
-                    }
+            // Allow the user to edit group descriptions and character information.
+            document.querySelectorAll('.planner__group').forEach((group, groupIndex) => {
+                group.querySelectorAll('.planner__group__description').forEach((groupDescription, gdi) => {
+                    groupDescription.addEventListener('keydown', e => {
+                        if (e.code === 'Enter') {
+                            groupDescription.blur()
+                        }
+                    })
+                    groupDescription.addEventListener('blur', e => {
+                        updateGroupDescription(gdi, e.target.innerText)
+                    })
                 })
-                gd.addEventListener('blur', e => {
-                    updateGroupDescription(index, e.target.innerText)
+
+                // Update weapons and role accordingly.
+                group.querySelectorAll('.planner__group__character').forEach((character, characterIndex) => {
+                    const characterWeapons = character.querySelectorAll('.planner__group__character__weapon')
+                    characterWeapons[0].addEventListener('input', event => {
+                        updateCharacterWeapon(groupIndex, characterIndex, 'primaryWeapon', event.target.value)
+                    })
+                    characterWeapons[1].addEventListener('input', event => {
+                        updateCharacterWeapon(groupIndex, characterIndex, 'secondaryWeapon', event.target.value)
+                    })
                 })
             })
         }

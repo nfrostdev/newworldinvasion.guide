@@ -49,7 +49,7 @@
       }
 
       &__weapon {
-        @apply bg-transparent appearance-none text-xs;
+        @apply bg-transparent appearance-none text-xs pr-2 py-1 bg-black bg-opacity-50 rounded-sm pl-4;
 
         &s {
           @apply grid grid-cols-2 gap-2;
