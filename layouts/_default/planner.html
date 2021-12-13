@@ -63,6 +63,37 @@
             document.title = planner.name + ' | Planner | New World Invasion Guide'
         }
 
+        function getWeaponImage(weapon) {
+            switch (weapon) {
+                case 'Sword & Shield':
+                    return 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/swordability4.png'
+                case 'Bow':
+                    return 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/bowability4_mod1.png'
+                case 'Great Axe':
+                    return 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/greataxe_ability4_judgementsreach.png'
+                case 'War Hammer':
+                    return 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/warhammerability3.png'
+                case 'Musket':
+                    return 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/bowpassive2.png'
+                case 'Spear':
+                    return 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_skewer.png'
+                case 'Hatchet':
+                    return 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/hatchetability1_mod3.png'
+                case 'Rapier':
+                    return 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/rapier_ability4_riposte.png'
+                case 'Life Staff':
+                    return 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/lifestaffpassive5.png'
+                case 'Fire Staff':
+                    return 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/firestaffability1.png'
+                case 'Ice Gauntlet':
+                    return 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/icemagic_ability5.png'
+                case 'Void Gauntlet':
+                    return 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/voidmagicability4.png'
+                default:
+                    return 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/swordability3_mod2.png'
+            }
+        }
+
         function renderPlanner(planner) {
             PAGE_HEADER.innerText = planner.name
             planner.groups.forEach((group, groupIndex) => {
@@ -130,13 +161,27 @@
                     const characterWeapons = document.createElement('div')
                     characterWeapons.classList.add('planner__group__character__weapons')
 
+                    const characterPrimaryWeaponContainer = document.createElement('div')
+                    characterPrimaryWeaponContainer.classList.add('planner__group__character__weapon__container')
                     const characterPrimaryWeapon = document.createElement('select')
                     characterPrimaryWeapon.innerText = character.primaryWeapon.toString()
                     characterPrimaryWeapon.classList.add('planner__group__character__weapon')
+                    const characterPrimaryWeaponIcon = document.createElement('img')
+                    characterPrimaryWeaponIcon.src = getWeaponImage(character.primaryWeapon)
+                    characterPrimaryWeaponIcon.classList.add('planner__group__character__weapon__icon')
+                    characterPrimaryWeaponContainer.appendChild(characterPrimaryWeapon)
+                    characterPrimaryWeaponContainer.appendChild(characterPrimaryWeaponIcon)
 
+                    const characterSecondaryWeaponContainer = document.createElement('div')
+                    characterSecondaryWeaponContainer.classList.add('planner__group__character__weapon__container')
                     const characterSecondaryWeapon = document.createElement('select')
                     characterSecondaryWeapon.innerText = character.secondaryWeapon.toString()
                     characterSecondaryWeapon.classList.add('planner__group__character__weapon')
+                    const characterSecondaryWeaponIcon = document.createElement('img')
+                    characterSecondaryWeaponIcon.src = getWeaponImage(character.secondaryWeapon)
+                    characterSecondaryWeaponIcon.classList.add('planner__group__character__weapon__icon')
+                    characterSecondaryWeaponContainer.appendChild(characterSecondaryWeapon)
+                    characterSecondaryWeaponContainer.appendChild(characterSecondaryWeaponIcon)
 
                     WEAPON_TYPES.forEach(wt => {
                         const primaryEl = document.createElement('option')
@@ -163,8 +208,8 @@
                     characterNameRole.appendChild(characterRole)
                     characterNameRole.appendChild(characterName)
                     characterContainer.appendChild(characterWeapons)
-                    characterWeapons.appendChild(characterPrimaryWeapon)
-                    characterWeapons.appendChild(characterSecondaryWeapon)
+                    characterWeapons.appendChild(characterPrimaryWeaponContainer)
+                    characterWeapons.appendChild(characterSecondaryWeaponContainer)
 
                     // Append this character to the character container.
                     groupCharacterContainer.appendChild(characterContainer)
