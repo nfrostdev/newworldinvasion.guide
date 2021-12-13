@@ -14,7 +14,7 @@
         const HEALER_WEAPONS = ['Life Staff']
 
         class Character {
-            constructor(name, primaryWeapon, secondaryWeapon) {
+            constructor(primaryWeapon, secondaryWeapon) {
                 if (TANK_WEAPONS.includes(primaryWeapon) || TANK_WEAPONS.includes(secondaryWeapon)) {
                     this.role = 'Tank'
                 } else if (HEALER_WEAPONS.includes(primaryWeapon) || HEALER_WEAPONS.includes(secondaryWeapon)) {
@@ -24,13 +24,13 @@
                 } else {
                     this.role = 'Melee DPS'
                 }
-                this.name = name
+                this.name = 'Example ' + this.role
                 this.primaryWeapon = WEAPON_TYPES.find(w => w === primaryWeapon)
                 this.secondaryWeapon = WEAPON_TYPES.find(w => w === secondaryWeapon)
             }
         }
 
-        function init () {
+        function init() {
             localStorage.getItem('')
         }
 
@@ -67,7 +67,7 @@
             for (let c = 0; c < CHARACTERS_PER_GROUP; c++) {
                 const primaryWeapon = getRandomWeaponType()
                 const secondaryWeapon = getRandomWeaponType(primaryWeapon)
-                const character = new Character('Example Character', primaryWeapon, secondaryWeapon)
+                const character = new Character(primaryWeapon, secondaryWeapon)
 
                 const characterContainer = document.createElement('div')
                 characterContainer.classList.add('planner__group__character')
@@ -79,31 +79,32 @@
                     case 'Tank':
                         characterContainer.classList.add('planner__group__character--tank')
                         characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/swordability6.png'
-                        characterRole.alt = 'Tank Icon'
                         characterRole.classList.add('planner__group__character__role--tank')
                         break
                     case 'Melee DPS':
                         characterContainer.classList.add('planner__group__character--melee')
                         characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/hatchetability4.png'
-                        characterRole.alt = 'Melee DPS Icon'
                         characterRole.classList.add('planner__group__character__role--melee')
                         break
                     case 'Healer':
                         characterContainer.classList.add('planner__group__character--healer')
                         characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/lifestaffability3.png'
-                        characterRole.alt = 'Healer Icon'
                         characterRole.classList.add('planner__group__character__role--healer')
                         break
                     default:
                         characterContainer.classList.add('planner__group__character--ranged')
                         characterRole.src = 'https://cdn.nwdb.info/db/images/live/v2/icons/abilities/bowability2.png'
-                        characterRole.alt = 'Ranged DPS Icon'
+                        characterRole.alt = 'Ranged DPS'
                         characterRole.classList.add('planner__group__character__role--ranged')
                 }
+                characterRole.alt = character.role
+                characterRole.title = character.role
+
+                const characterNameRole = document.createElement('div')
+                characterNameRole.classList.add('planner__group__character__name')
 
                 const characterName = document.createElement('div')
                 characterName.innerText = character.name.toString()
-                characterName.classList.add('planner__group__character__name')
 
                 const characterWeapons = document.createElement('div')
                 characterWeapons.classList.add('planner__group__character__weapons')
@@ -137,8 +138,9 @@
                 })
 
                 // Append character information to the character container.
-                characterContainer.appendChild(characterRole)
-                characterContainer.appendChild(characterName)
+                characterContainer.appendChild(characterNameRole)
+                characterNameRole.appendChild(characterRole)
+                characterNameRole.appendChild(characterName)
                 characterContainer.appendChild(characterWeapons)
                 characterWeapons.appendChild(characterPrimaryWeapon)
                 characterWeapons.appendChild(characterSecondaryWeapon)

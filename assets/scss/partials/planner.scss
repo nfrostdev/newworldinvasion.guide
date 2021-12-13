@@ -17,12 +17,11 @@
       }
 
       &__name {
-        @apply font-bold mb-1;
+        @apply flex justify-start items-center font-bold mb-1 whitespace-nowrap text-sm;
       }
 
       &__role {
-        @apply absolute rounded-full w-6 h-6 p-1 bg-gradient-to-br shadow from-gray-800 to-nw-darkgray;
-        right: -0.75rem;
+        @apply w-4 h-4 mr-1;
       }
 
       &--tank {
