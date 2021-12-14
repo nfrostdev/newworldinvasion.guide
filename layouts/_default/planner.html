@@ -153,10 +153,11 @@
                     characterRole.title = character.role
 
                     const characterNameRole = document.createElement('div')
-                    characterNameRole.classList.add('planner__group__character__name')
+                    characterNameRole.classList.add('planner__group__character__name-role')
 
                     const characterName = document.createElement('div')
                     characterName.innerText = character.name.toString()
+                    characterName.classList.add('planner__group__character__name')
 
                     const characterWeapons = document.createElement('div')
                     characterWeapons.classList.add('planner__group__character__weapons')
@@ -269,6 +270,14 @@
             savePlanner(planner)
         }
 
+        function updateCharacterName(groupIndex, characterIndex, name) {
+            const planner = getCurrentPagePlanner()
+            const character = planner.groups[groupIndex].characters[characterIndex]
+            character.name = name
+            planner.groups[groupIndex].characters[characterIndex] = character
+            savePlanner(planner)
+        }
+
         function init() {
             const planners = getLocalPlanners()
             console.log(planners)
@@ -326,6 +335,16 @@
 
                 // Update weapons and role accordingly.
                 group.querySelectorAll('.planner__group__character').forEach((character, characterIndex) => {
+                    const characterName = character.querySelector('.planner__group__character__name')
+                    characterName.contentEditable = 'true'
+                    characterName.addEventListener('keydown', e => {
+                        if (e.code === 'Enter') {
+                            characterName.blur()
+                        }
+                    })
+                    characterName.addEventListener('blur', e => {
+                        updateCharacterName(groupIndex, characterIndex, e.target.innerText)
+                    })
                     const characterWeapons = character.querySelectorAll('.planner__group__character__weapon')
                     characterWeapons[0].addEventListener('input', event => {
                         updateCharacterWeapon(groupIndex, characterIndex, 'primaryWeapon', event.target.value)
