@@ -1,0 +1,9 @@
+.footer {
+  &__disclaimer {
+    @apply fixed bottom-0 right-0 z-10 w-48 bg-red-900 border border-red-700 p-2 rounded mb-8 mr-8 leading-tight shadow-lg;
+
+    p {
+      @apply my-0;
+    }
+  }
+}
