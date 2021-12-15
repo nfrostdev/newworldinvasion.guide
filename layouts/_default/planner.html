@@ -370,14 +370,14 @@
 
             // Allow the user to edit group descriptions and character information.
             document.querySelectorAll('.planner__group').forEach((group, groupIndex) => {
-                group.querySelectorAll('.planner__group__description').forEach((groupDescription, gdi) => {
+                group.querySelectorAll('.planner__group__description').forEach(groupDescription => {
                     groupDescription.addEventListener('keydown', e => {
                         if (e.code === 'Enter') {
                             groupDescription.blur()
                         }
                     })
                     groupDescription.addEventListener('blur', e => {
-                        updateGroupDescription(gdi, e.target.innerText)
+                        updateGroupDescription(groupIndex, e.target.innerText)
                     })
                 })
 
