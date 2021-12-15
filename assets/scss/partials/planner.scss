@@ -2,7 +2,8 @@
   @apply grid gap-3 max-w-6xl w-full;
   @apply sm:grid-cols-2;
   @apply lg:grid-cols-3;
-  @apply xl:grid-cols-5;
+  @apply xl:grid-cols-4;
+  @apply 2xl:grid-cols-5;
 
   &__group {
     @apply bg-nw-darkgray p-3 rounded-md;
@@ -22,6 +23,11 @@
 
       &s {
         @apply grid gap-2;
+      }
+
+      &__drag {
+        @apply absolute top-0 right-0 w-3 h-3 mt-3 mr-3 opacity-75;
+        cursor: grab;
       }
 
       &__name-role {

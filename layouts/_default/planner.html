@@ -130,6 +130,12 @@
                     characterContainer.classList.add('planner__group__character')
                     characterContainer.draggable = true
 
+                    {{ $bars := resources.Get "img/bars.svg" | minify | fingerprint }}
+                    const characterDragIcon = document.createElement('img')
+                    characterDragIcon.src = '{{ $bars.Permalink }}'
+                    characterDragIcon.classList.add('planner__group__character__drag')
+                    characterContainer.appendChild(characterDragIcon)
+
                     characterContainer.addEventListener('dragstart', e => {
                         const payload = {
                             groupIndex: groupIndex,
