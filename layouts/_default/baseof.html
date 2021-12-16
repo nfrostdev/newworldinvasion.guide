@@ -24,5 +24,8 @@
 {{ partial "header" . }}
 <main class="main">{{ block "main" . }}{{ end }}</main>
 {{ partial "footer" . }}
+
+{{ $main := resources.Get "js/main.js" | minify | fingerprint }}
+<script src="{{ $main.Permalink }}" defer></script>
 </body>
 </html>
