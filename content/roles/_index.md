@@ -11,10 +11,12 @@ Typically, your Invasion leader will denote specific roles to each group within 
 ## Siege Groups
 Siege groups use the defensive Fortifications installed and placed by the governing Company of the fort. This group primarily focuses on destroying enemy Siege Engines that spawn, as well as the smaller wave enemies.
 
+It is typically best to have excess Melee Damage Dealers and Healers fill these groups, especially those that are in lower gear score compared to the majority of your Army's composition.
+
 [Read more about the different types of Fortifications here.](/fortifications)
 
 ## Gate Groups
-Gate groups are groups that do what you think they would do, stand by and protect a Gate. Typically, each Gate Group will consist of four damage dealers and one healer.
+Gate groups are groups that protect a designated Gate. Typically, each Gate Group will consist of four damage dealers and one healer.
 
 It is recommended to have at least one Spear user in each group that can apply three stacks of ![Rend Icon](https://cdn.nwdb.info/db/images/live/v2/status/se_rendt1.png) [Rend](https://nwdb.info/db/status-effect/spear_perforate_rend_upgrade) with ![Perforate Icon](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_perforate.png) [Perforate](https://nwdb.info/db/ability/ability_spear_perforate) and ![Rupturing Strikes Icon](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_perforate_bonusrend.png) [Rupturing Strikes](https://nwdb.info/db/ability/ability_spear_perforate_bonusrend), which significantly decreases the resistances of bosses at that gate.
 
