@@ -20,11 +20,11 @@ It is recommended to have at least one Spear user in each group that can apply t
 
 For Gates in the back of the fort, it can be very helpful to have Greataxe users with ![Gravity Well Icon](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/greataxe_ability6_gravitywell.png) [Gravity Well](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_perforate_bonusrend.png) to stop larger groups of Bombers from reaching the gates during times when Fortification groups are overwhelmed or reloading.
 
-Well time and coordinated ![Gravity Well Icon](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/greataxe_ability6_gravitywell.png) [Gravity Well](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_perforate_bonusrend.png) chains can completely halt Spriggans from reaching gates.
+Well time and coordinated ![Gravity Well Icon](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/greataxe_ability6_gravitywell.png) [Gravity Well](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_perforate_bonusrend.png) chains can completely halt Spriggans and Commanders from reaching gates.
 
-For the remainder of damage dealers, ranged damage is preferential due to the lethality of bosses like Commanders and Spriggans.
+For the remainder of damage dealers, ranged damage is preferential due to the lethality of bosses like Spriggans and Commanders.
 
-## Flexible Groups
+## Flexible (Flex) Groups
 Flexible groups are dedicated to assisting Gate Groups that have multiple bosses at them, or groups with less than ideal gear or damage potential. The Flexible Groups are typically knowledgeable players with higher gear scores due to the prevalence and importance of their positioning.
 
 As with Gate Groups, It is recommended to have at least one Spear user in each Flexible Group that can apply three stacks of ![Rend Icon](https://cdn.nwdb.info/db/images/live/v2/status/se_rendt1.png) [Rend](https://nwdb.info/db/status-effect/spear_perforate_rend_upgrade) with ![Perforate Icon](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_perforate.png) [Perforate](https://nwdb.info/db/ability/ability_spear_perforate) and ![Rupturing Strikes Icon](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_perforate_bonusrend.png) [Rupturing Strikes](https://nwdb.info/db/ability/ability_spear_perforate_bonusrend), which significantly decreases the resistances of bosses.
