@@ -27,3 +27,10 @@ Damage Dealers that are present on the ground and deal high amounts of damage th
 Spriggans are stopped entirely by ![Gravity Well Icon](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/greataxe_ability6_gravitywell.png) [Gravity Well](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_perforate_bonusrend.png) for the duration of the ability; and if multiple Great Axe users are present, chaining the ability can prevent the Spriggan from reaching any structure in totality. Utilizing this ability in a coordinated manner can vastly increase the chance of success for your Army, saving valuable repair parts and movement time.
 
 ## ![Brute Icon](/img/icons/brute.svg) Brutes
+**Dealing medium, consistent damage to Gates, Brutes pose a serious threat to your structures, and some threat to your Melee Damage Dealers.**
+
+Brutes can and should be taunted and pulled away from structures if Tanks are present in groups near them.
+
+Damage Dealers that are present on the ground and deal high amounts of damage that pull aggro should do the same as if they were a Tank, move the Brute away from structures.
+
+Brutes have Stamina and can be broken (put into a state of being unable to attack or move for a period of time.)
