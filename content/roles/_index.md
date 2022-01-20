@@ -22,9 +22,9 @@ It is recommended to have at least one Spear user in each group that can apply t
 
 For Gates in the back of the fort, it can be very helpful to have Greataxe users with ![Gravity Well Icon](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/greataxe_ability6_gravitywell.png) [Gravity Well](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_perforate_bonusrend.png) to stop larger groups of Bombers from reaching the gates during times when Fortification groups are overwhelmed or reloading.
 
-Well time and coordinated ![Gravity Well Icon](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/greataxe_ability6_gravitywell.png) [Gravity Well](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_perforate_bonusrend.png) chains can completely halt Spriggans and Commanders from reaching gates.
+Well time and coordinated ![Gravity Well Icon](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/greataxe_ability6_gravitywell.png) [Gravity Well](https://cdn.nwdb.info/db/images/live/v2/icons/abilities/spear_perforate_bonusrend.png) chains can completely halt Spriggans and Commanders from reaching gates; allowing turrets to maximize damage against them.
 
-For the remainder of damage dealers, ranged damage is preferential due to the lethality of bosses like Spriggans and Commanders.
+For the remainder of damage dealers, ranged damage is preferential due to the lethality of bosses.
 
 ## Flexible (Flex) Groups
 Flexible groups are dedicated to assisting Gate Groups that have multiple bosses at them, or groups with less than ideal gear or damage potential. The Flexible Groups are typically knowledgeable players with higher gear scores due to the prevalence and importance of their positioning.
