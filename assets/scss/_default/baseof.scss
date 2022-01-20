@@ -23,7 +23,11 @@ h1 {
 }
 
 h2 {
-  @apply text-3xl mt-8 mb-2;
+  @apply flex justify-start items-center text-3xl mt-8 mb-2;
+
+  img {
+    @apply h-6 mx-2;
+  }
 }
 
 h3 {
